@@ -1394,7 +1394,7 @@
 
     <nav class="navbar" id="navbar">
         <a href="#" class="logo" id="admin-trigger">
-            <img src="https://i.postimg.cc/T3LsTyL6/Picsart-26-03-19-11-26-14-740.png" alt="NexSite Digital">
+            <img src="https://i.postimg.cc/zfjDFPJn/Picsart-26-03-19-11-26-14-740-removebg-preview.png" alt="NexSite Digital">
             <div class="logo-text">Nex<span>Site</span></div>
         </a>
         
