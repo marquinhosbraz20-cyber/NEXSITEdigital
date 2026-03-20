@@ -138,8 +138,16 @@
             width: auto;
             max-width: 200px;
             display: block;
-            mix-blend-mode: multiply;
+            background-color: transparent !important;
+            mix-blend-mode: multiply; color-dodge;
+            filter: contrast(200%) brightness(150%) multiply;
+
         }
+        #admin-trigger {
+    background: none !important;
+    border: none !important;
+    box-shadow: none !important;
+      
 
         .logo-text {
             font-size: 2.2rem;
