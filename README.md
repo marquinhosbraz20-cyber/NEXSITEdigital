@@ -1,6 +1,15 @@
 
 <html lang="pt-br">
-<head>
+<head> <meta property="og:title" content="NEXsiteDigital" />
+
+<meta property="og:description" content="Confira nossos serviços e novidades no site " />
+
+<meta property="og:image" content="https://marquinhosbraz20-cyber/NEXSITEdigital/IMG-20260317-WA0001.jpg" />
+
+<meta property="og:url" content="https://marquinhosbraz20-cyber/NEXSITEdigital" />
+
+<meta property="og:type" content="website" />
+    >
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="NexSite Digital - Soluções digitais de alta performance para impulsionar seu negócio. Landing pages, sistemas web e consultoria digital.">
