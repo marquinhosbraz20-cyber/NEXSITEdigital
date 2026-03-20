@@ -942,7 +942,7 @@
             align-items: center;
             justify-content: center;
             font-weight: 900;
-            color: white;
+            color: invislible;
         }
 
         .footer-logo-text {
