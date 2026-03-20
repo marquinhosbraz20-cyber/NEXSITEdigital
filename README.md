@@ -1645,14 +1645,14 @@
         <div class="section-header reveal">
             <span class="section-tag">Investimento</span>
             <h2 class="section-title">Planos Transparentes<br>Sem Surpresas</h2>
-            <p class="section-subtitle">Escolha o plano ideal para seu negócio. Todos incluem suporte técnico e hospedagem por 1 ano.</p>
+            <p class="section-subtitle">Escolha o plano ideal para seu negócio. Todos incluem suporte técnico de um ano.</p>
         </div>
 
         <div class="pricing-grid">
             <div class="pricing-card reveal">
                 <div class="pricing-header">
                     <h3 class="pricing-name">Starter</h3>
-                    <div class="pricing-price">R$ 300<span>/único</span></div>
+                    <div class="pricing-price">R$ 300<básico>/único</span></div>
                     <p class="pricing-description">Perfeito para profissionais liberais e pequenos negócios</p>
                 </div>
                 <ul class="pricing-features">
@@ -1662,8 +1662,10 @@
                     <li><i class="fas fa-check"></i> Otimização SEO Básica</li>
                     <li><i class="fas fa-check"></i> Hospedagem 1 Ano</li>
                     <li><i class="not-inclued"></i> Certificado SSL</li>
-                    <li class="not-included"><i class="fas fa-times"></i> Painel Administrativo</li>
-                    <li class="not-included"><i class="fas fa-times"></i> Blog Integrado</li>
+                    <li><i class="not-included"><i 
+                           class="fas fa-times"></i> Painel Administrativo</li>
+                    <li class="not-included"><i                                    class="fas fa-times"></i>
+    Blog Integrado</li>
                 </ul>
                 <button class="pricing-btn" onclick="openModal('starter')">Quero Este Plano</button>
             </div>
