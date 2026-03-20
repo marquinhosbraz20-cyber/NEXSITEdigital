@@ -1,4 +1,3 @@
-
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
@@ -139,6 +138,7 @@
             width: auto;
             max-width: 200px;
             display: block;
+            mix-blend-mode: multiply; /* LINHA ADICIONADA PARA REMOVER O FUNDO BRANCO */
         }
 
         .logo-text {
