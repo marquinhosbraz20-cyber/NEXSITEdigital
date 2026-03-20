@@ -4,9 +4,9 @@
 
 <meta property="og:description" content="Confira nossos serviços e novidades no site" />
 
-<meta property="og:image" content="https://marquinhosbraz20-cyber.github.io/NEXSITEdigital/IMG-20260317-WA0001.jpg" />
+<meta property="og:image" content="https://nexsiteonline.top/IMG-20260317-WA0001.jpg" />
 
-<meta property="og:url" content="https://marquinhosbraz20-cyber.github.io/NEXSITEdigital/" />
+<meta property="og:url" content="https://nexsitedigital.top/NEXSITEdigital/" />
 
 <meta property="og:type" content="website" />
 
