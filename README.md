@@ -138,6 +138,9 @@
             width: auto;
             max-width: 200px;
             display: block;
+            filter: invert(1) grayscale(1) brightness(1.5); 
+    mix-blend-mode: screen;
+     image-rendering: -webkit-optimize-contrast;
             mix-blend-mode: multiply; /* LINHA ADICIONADA PARA REMOVER O FUNDO BRANCO */
         }
 
