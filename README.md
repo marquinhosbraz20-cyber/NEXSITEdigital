@@ -106,10 +106,8 @@
         width: auto;
         max-width: 200px;
         display: block;
-        mix-blend-mode: multiply; color-dodge;
-       
-}
-    
+    }
+
     .logo-text {
         font-size: 2.2rem;
         font-weight: 800;
@@ -164,7 +162,7 @@
         background: var(--gradient-primary);
         border: none;
         border-radius: 50px;
-        color: black;
+        color: white;
         font-weight: 700;
         cursor: pointer;
         transition: all 0.3s ease;
@@ -911,7 +909,7 @@
         align-items: center;
         justify-content: center;
         font-weight: 900;
-        color: invislible;
+        color: white;
     }
 
     .footer-logo-text {
@@ -1254,7 +1252,7 @@
         }
         
         .logo img {
-            height: 80px;
+            height: 40px;
         }
     }
 
