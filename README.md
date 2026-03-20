@@ -195,7 +195,7 @@
             background: var(--gradient-primary);
             border: none;
             border-radius: 50px;
-            color: white;
+            color: red;
             font-weight: 700;
             cursor: pointer;
             transition: all 0.3s ease;
