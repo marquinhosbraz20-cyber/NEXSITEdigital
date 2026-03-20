@@ -1984,7 +1984,7 @@
         resizeCanvas();
         window.addEventListener('resize', resizeCanvas);
 
-        const chars = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
+        const chars = 'NEXSITEONLINEPATOSPBSITENEX';
         const drops = [];
         const fontSize = 14;
         const columns = canvas.width / fontSize;
