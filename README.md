@@ -1,16 +1,21 @@
 
 <html lang="pt-br">
-<head> <meta property="og:title" content="NEXsiteDigital" />
 
-<meta property="og:description" content="Confira nossos serviços e novidades no site" />
-
-<meta property="og:image" content="https://nexsiteonline.top/IMG-20260317-WA0001.jpg" />
-
-<meta property="og:url" content="https://nexsitedigital.top/NEXSITEdigital/" />
-
-<meta property="og:type" content="website" />
-
-    >
+<head>
+    <meta property="og:title" content="NEXsiteDigital" />
+    <meta property="og:description" content="Confira nossos serviços e novidades no site" />
+    <meta property="og:image" content="https://nexsitedigital.top/IMG-20260317-WA0001.jpg" />
+    <meta property="og:url" content="https://nexsitedigital.top/" />
+    <meta property="og:type" content="website" />
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NexSite Digital | Soluções Digitais</title>
+</head>
+<body>
+    </body>
+</html>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="NexSite Digital - Soluções digitais de alta performance para impulsionar seu negócio. Landing pages, sistemas web e consultoria digital.">
