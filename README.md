@@ -1286,7 +1286,7 @@
             }
             
             .logo img {
-                height: 40px;
+                height: 80px;
             }
         }
 
@@ -1396,7 +1396,7 @@
     <nav class="navbar" id="navbar">
         <a href="#" class="logo" id="admin-trigger">
             
-<img src="https://i.postimg.cc/V6bgPZzV/Picsart-26-03-20-08-30-39-380.png" alt="NexSite Digital">
+<img src="https://i.postimg.cc/vHNm4G9v/IMG-20260317-WA0001-2.jpg" alt="NexSite Digital">
             <div class="logo-text">Nex<span>Site</span></div>
         </a>
         
@@ -1836,7 +1836,7 @@
         <div class="footer-content">
             <div class="footer-brand">
                 <div class="footer-logo">
-                    <img src="https://i.postimg.cc/yd6s8WC5/Picsart_26_03_17_08_57_55_728.png-24" alt="NexSite Digital" style="height: 40px; width: auto; max-width: 150px; display: block; margin-bottom: 15px;">
+                    <img src="https://i.postimg.cc/vHNm4G9v/IMG-20260317-WA0001-2.jpg" alt="NexSite Digital" style="height: 40px; width: auto; max-width: 150px; display: block; margin-bottom: 15px;">
                 </div>
                 <p class="footer-description">
                     Transformamos negócios através de soluções digitais inovadoras. 
