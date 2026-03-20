@@ -1447,7 +1447,7 @@
 
             <div class="hero-stats">
                 <div class="stat-item">
-                    <div class="stat-number" data-count="+ de 150">0</div>
+                    <div class="stat-number" data-count="150">0</div>
                     <div class="stat-label">Projetos Entregues</div>
                 </div>
                 <div class="stat-item">
