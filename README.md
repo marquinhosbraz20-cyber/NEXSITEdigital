@@ -1423,7 +1423,7 @@
         <div class="hero-content">
             <div class="hero-badge">
                 <i class="fas fa-rocket"></i>
-                Transformando ideias em realidade digital
+            NEXSITEDIGITAL    Transformando ideias em realidade digital agora em patos e região 
             </div>
             
             <h1>
