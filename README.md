@@ -1652,7 +1652,7 @@
             <div class="pricing-card reveal">
                 <div class="pricing-header">
                     <h3 class="pricing-name">Starter</h3>
-                    <div class="pricing-price">R$ 1.000<span>/único</span></div>
+                    <div class="pricing-price">R$ 300<span>/único</span></div>
                     <p class="pricing-description">Perfeito para profissionais liberais e pequenos negócios</p>
                 </div>
                 <ul class="pricing-features">
@@ -1661,7 +1661,7 @@
                     <li><i class="fas fa-check"></i> Formulário de Contato</li>
                     <li><i class="fas fa-check"></i> Otimização SEO Básica</li>
                     <li><i class="fas fa-check"></i> Hospedagem 1 Ano</li>
-                    <li><i class="fas fa-check"></i> Certificado SSL</li>
+                    <li><i class="not-inclued"></i> Certificado SSL</li>
                     <li class="not-included"><i class="fas fa-times"></i> Painel Administrativo</li>
                     <li class="not-included"><i class="fas fa-times"></i> Blog Integrado</li>
                 </ul>
@@ -1671,7 +1671,7 @@
             <div class="pricing-card featured reveal">
                 <div class="pricing-header">
                     <h3 class="pricing-name">Business</h3>
-                    <div class="pricing-price">R$ 1.997<span>/único</span></div>
+                    <div class="pricing-price">R$ 997<span>/único</span></div>
                     <p class="pricing-description">Ideal para empresas que precisam de mais recursos</p>
                 </div>
                 <ul class="pricing-features">
@@ -1683,6 +1683,7 @@
                     <li><i class="fas fa-check"></i> Integração WhatsApp</li>
                     <li><i class="fas fa-check"></i> Hospedagem 1 Ano</li>
                     <li><i class="fas fa-check"></i> Suporte Técnico 30 dias</li>
+                    <li class="not-included"><i 
                 </ul>
                 <button class="pricing-btn" onclick="openModal('business')">Quero Este Plano</button>
             </div>
@@ -1690,7 +1691,7 @@
             <div class="pricing-card reveal">
                 <div class="pricing-header">
                     <h3 class="pricing-name">E-commerce</h3>
-                    <div class="pricing-price">R$ 3.997<span>/único</span></div>
+                    <div class="pricing-price">R$ 1.997<span>/único</span></div>
                     <p class="pricing-description">Loja virtual completa para vender online</p>
                 </div>
                 <ul class="pricing-features">
@@ -1731,7 +1732,7 @@
                 <div class="testimonial-author">
                     <div class="author-avatar">MR</div>
                     <div class="author-info">
-                        <h4>Mariana Rocha</h4>
+                        <h4>Mariana Rocha  (João Pessoa)</h4>
                         <p>CEO, Fashion Store</p>
                     </div>
                 </div>
@@ -1752,7 +1753,7 @@
                 <div class="testimonial-author">
                     <div class="author-avatar">CS</div>
                     <div class="author-info">
-                        <h4>Carlos Silva</h4>
+                        <h4>Carlos Silva (Sousa)</h4>
                         <p>Diretor, Tech Solutions</p>
                     </div>
                 </div>
@@ -1773,7 +1774,7 @@
                 <div class="testimonial-author">
                     <div class="author-avatar">PL</div>
                     <div class="author-info">
-                        <h4>Prof. Lucas</h4>
+                        <h4>Prof. Lucas (Bayex)</h4>
                         <p>Educador Online</p>
                     </div>
                 </div>
