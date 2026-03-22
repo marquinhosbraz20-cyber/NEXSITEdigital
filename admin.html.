@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NexSite | Admin Master</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #00f2fe; --accent: #ab27ff; --darker: #020408; --dark: #0a0f1c;
+            --glass: rgba(10, 15, 28, 0.8); --border: rgba(0, 242, 254, 0.2);
+            --text: #ffffff; --text-dim: #94a3b8; --success: #22c55e;
+            --gradient: linear-gradient(135deg, var(--primary), var(--accent));
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body { background: var(--darker); color: var(--text); }
+        .hidden { display: none !important; }
+        
+        /* LOGIN */
+        #login-screen { height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; }
+        .login-card { background: var(--glass); border: 1px solid var(--border); padding: 40px; border-radius: 24px; width: 100%; max-width: 400px; text-align: center; backdrop-filter: blur(20px); }
+        input { width: 100%; padding: 12px; border-radius: 8px; border: 1px solid var(--border); background: rgba(255,255,255,0.05); color: white; margin: 10px 0; }
+        button { width: 100%; padding: 14px; border: none; border-radius: 50px; background: var(--gradient); color: white; font-weight: 700; cursor: pointer; margin-top: 10px; }
+        
+        /* DASHBOARD */
+        .wrapper { display: flex; min-height: 100vh; }
+        .sidebar { width: 280px; background: var(--dark); border-right: 1px solid var(--border); padding: 30px 20px; }
+        .main { flex: 1; padding: 40px; }
+        .card { background: var(--glass); padding: 25px; border-radius: 20px; border: 1px solid var(--border); margin-bottom: 20px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { text-align: left; padding: 15px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .user-info { color: var(--primary); font-weight: 800; margin-bottom: 20px; display: block; }
+    </style>
+</head>
+<body>
+
+    <div id="login-screen">
+        <div class="login-card">
+            <h2 style="margin-bottom:20px">NexSite <span style="color:var(--primary)">Admin</span></h2>
+            <input type="email" id="email" placeholder="E-mail do Administrador">
+            <input type="password" id="pass" placeholder="Senha">
+            <button onclick="login()">ACESSAR SISTEMA</button>
+            <p id="msg" style="margin-top:15px; font-size:12px; color:var(--text-dim)"></p>
+        </div>
+    </div>
+
+    <div id="admin-dashboard" class="hidden">
+        <div class="wrapper">
+            <aside class="sidebar">
+                <h3>NEXSITE</h3>
+                <span class="user-info" id="user-display">Carregando...</span>
+                <button onclick="logout()" style="background:#ef4444; font-size:12px">SAIR DO SISTEMA</button>
+            </aside>
+            <main class="main">
+                <div class="card">
+                    <h3>+ Cadastrar Novo Admin/Dev</h3>
+                    <input type="text" id="new-name" placeholder="Nome do Desenvolvedor">
+                    <input type="email" id="new-email" placeholder="E-mail">
+                    <input type="password" id="new-pass" placeholder="Senha">
+                    <button onclick="cadastrar()" style="background:var(--accent)">CRIAR CONTA</button>
+                </div>
+
+                <div class="card">
+                    <h3>Leads e Contatos</h3>
+                    <table>
+                        <thead>
+                            <tr><th>Cliente</th><th>Projeto</th><th>Ação</th></tr>
+                        </thead>
+                        <tbody id="leads-body">
+                            <tr><td colspan="3">Aguardando novos contatos...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+        // Dados do seu Firebase (Preenchidos com base no seu print)
+        const firebaseConfig = {
+            apiKey: "AIzaSyBsFGZB3qGhQtCDN_mR_elSC3-QKVUmm1Q",
+            authDomain: "nexsiteadmin.firebaseapp.com",
+            projectId: "nexsiteadmin",
+            storageBucket: "nexsiteadmin.firebasestorage.app",
+            messagingSenderId: "401939346793",
+            appId: "1:401939346793:web:b4b1c3d8858dc89eeaf9f8"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        // LOGIN
+        window.login = () => {
+            const e = document.getElementById('email').value;
+            const s = document.getElementById('pass').value;
+            signInWithEmailAndPassword(auth, e, s).catch(err => alert("Erro: " + err.message));
+        };
+
+        // CADASTRAR OUTRO DEV
+        window.cadastrar = () => {
+            const n = document.getElementById('new-name').value;
+            const e = document.getElementById('new-email').value;
+            const s = document.getElementById('new-pass').value;
+            createUserWithEmailAndPassword(auth, e, s).then((u) => {
+                updateProfile(u.user, { displayName: n });
+                alert("Dev " + n + " cadastrado!");
+            }).catch(err => alert(err.message));
+        };
+
+        // MONITOR DE SESSÃO
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                document.getElementById('login-screen').classList.add('hidden');
+                document.getElementById('admin-dashboard').classList.remove('hidden');
+                document.getElementById('user-display').innerText = "ADM: " + (user.displayName || user.email);
+            } else {
+                document.getElementById('login-screen').classList.remove('hidden');
+                document.getElementById('admin-dashboard').classList.add('hidden');
+            }
+        });
+
+        window.logout = () => signOut(auth);
+    </script>
+</body>
+</html>
