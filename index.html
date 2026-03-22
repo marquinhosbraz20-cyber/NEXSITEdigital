@@ -2118,36 +2118,36 @@
                         item.style.display = 'none';
                     }, 300);
                 <script>
-    // Força o fecho de qualquer função que tenha ficado aberta lá em cima
-    } catch(e) { console.log('Erro de limpeza'); }
+    // 1. FECHA QUALQUER FUNÇÃO QUE TENHA FICADO ABERTA
+    } catch(e) { console.log("Limpando erros..."); }
 
-    // FUNÇÕES DE INTERFACE
+    // 2. FUNÇÃO PARA O MENU MOBILE
     function toggleMobileMenu() {
         const nav = document.querySelector('.nav-links');
         if(nav) nav.classList.toggle('active');
     }
 
-    // COMANDO PARA O SITE ABRIR (LOADER) - MODO FORÇADO
-    function abrirSite() {
+    // 3. O INTERRUPTOR (FAZ O SITE APARECER)
+    function removerCarregamento() {
         const loader = document.getElementById('loader');
         if (loader) {
-            loader.style.setProperty('display', 'none', 'important');
+            loader.style.display = 'none';
             loader.classList.add('hidden');
         }
-        console.log("Site aberto com sucesso!");
     }
 
-    // Tenta abrir assim que o DOM carregar e novamente quando tudo terminar
-    document.addEventListener('DOMContentLoaded', abrirSite);
-    window.addEventListener('load', abrirSite);
-    // Backup: abre após 3 segundos de qualquer forma
-    setTimeout(abrirSite, 3000);
+    // Tenta abrir o site de todas as formas possíveis
+    window.addEventListener('load', removerCarregamento);
+    document.addEventListener('DOMContentLoaded', removerCarregamento);
+    // Se nada funcionar, abre à força em 3 segundos
+    setTimeout(removerCarregamento, 3000);
 </script>
 
 <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
 
 <script>
+    // CONFIGURAÇÃO DO SEU BANCO DE DADOS
     const firebaseConfig = {
         apiKey: "AIzaSyBsFGZB3qGhQtCDN_mR_eLSC3...", 
         authDomain: "nexsiteadmin.firebaseapp.com",
@@ -2161,31 +2161,6 @@
         firebase.initializeApp(firebaseConfig);
     }
     var db = firebase.firestore();
-
-    async function handleContact(event) {
-        event.preventDefault();
-        const btn = event.target.querySelector('button');
-        try {
-            btn.disabled = true;
-            const formData = {
-                nome: document.getElementById('name').value,
-                email: document.getElementById('email').value,
-                whatsapp: document.getElementById('whatsapp').value,
-                servico: document.getElementById('service').value,
-                mensagem: document.getElementById('message').value,
-                data: new Date().toISOString()
-            };
-            await db.collection("leads").add(formData);
-            showToast('Sucesso!', 'success');
-            event.target.reset();
-        } catch (error) {
-            showToast('Erro ao enviar', 'error');
-        } finally {
-            btn.disabled = false;
-        }
-    }
 </script>
 </body>
 </html>
-
-            
