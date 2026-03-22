@@ -1393,6 +1393,27 @@
     </style>
 </head>
 <body>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+
+<script>
+  // CONFIGURAÇÃO DO SEU PROJETO NEXSITE
+  const firebaseConfig = {
+    apiKey: "AIzaSyBsFGZB3qGhQtCDN_mR_eLSC3...", 
+    authDomain: "nexsiteadmin.firebaseapp.com",
+    projectId: "nexsiteadmin",
+    storageBucket: "nexsiteadmin.firebasestorage.app",
+    messagingSenderId: "401939346793",
+    appId: "1:401939346793:web:b4b1c3d8858..."
+  };
+
+  // LIGA O MOTOR
+  if (!firebase.apps.length) {
+      firebase.initializeApp(firebaseConfig);
+  }
+  const db = firebase.firestore();
+</script>
+    
     <div class="loader" id="loader">
         <div class="loader-content">
             <div class="loader-spinner"></div>
@@ -2338,12 +2359,10 @@ const db = firebase.firestore();
         });
 
         // Mobile Menu Toggle
-            function toggleMobileMenu() {
-        // Implement mobile menu logic here
+                function toggleMobileMenu() {
         showToast('Menu mobile em desenvolvimento', 'success');
-    } // <--- ESTA CHAVE ESTAVA FALTANDO!
+    }
 
-    // FAZ O SITE APARECER
     window.addEventListener('load', () => {
         const loader = document.getElementById('loader');
         if (loader) {
@@ -2351,9 +2370,5 @@ const db = firebase.firestore();
         }
     });
 </script>
-
-<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
-
 </body>
 </html>
