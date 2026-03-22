@@ -2117,21 +2117,55 @@
                     setTimeout(() => {
                         item.style.display = 'none';
                     }, 300);
-                }
-            });
-        }
+                <script>
+    // Força o fecho de qualquer função que tenha ficado aberta lá em cima
+    } catch(e) { console.log('Erro de limpeza'); }
 
-        // Modal Functions
-        function openModal(plan) {
-            const modal = document.getElementById('modal');
-            const title = document.getElementById('modal-title');
-                // --- LÓGICA DE CONTATO ---
+    // FUNÇÕES DE INTERFACE
+    function toggleMobileMenu() {
+        const nav = document.querySelector('.nav-links');
+        if(nav) nav.classList.toggle('active');
+    }
+
+    // COMANDO PARA O SITE ABRIR (LOADER) - MODO FORÇADO
+    function abrirSite() {
+        const loader = document.getElementById('loader');
+        if (loader) {
+            loader.style.setProperty('display', 'none', 'important');
+            loader.classList.add('hidden');
+        }
+        console.log("Site aberto com sucesso!");
+    }
+
+    // Tenta abrir assim que o DOM carregar e novamente quando tudo terminar
+    document.addEventListener('DOMContentLoaded', abrirSite);
+    window.addEventListener('load', abrirSite);
+    // Backup: abre após 3 segundos de qualquer forma
+    setTimeout(abrirSite, 3000);
+</script>
+
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+
+<script>
+    const firebaseConfig = {
+        apiKey: "AIzaSyBsFGZB3qGhQtCDN_mR_eLSC3...", 
+        authDomain: "nexsiteadmin.firebaseapp.com",
+        projectId: "nexsiteadmin",
+        storageBucket: "nexsiteadmin.firebasestorage.app",
+        messagingSenderId: "401939346793",
+        appId: "1:401939346793:web:b4b1c3d8858..."
+    };
+
+    if (!firebase.apps.length) {
+        firebase.initializeApp(firebaseConfig);
+    }
+    var db = firebase.firestore();
+
     async function handleContact(event) {
         event.preventDefault();
         const btn = event.target.querySelector('button');
-        const originalText = btn.innerHTML;
         try {
-            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
             btn.disabled = true;
             const formData = {
                 nome: document.getElementById('name').value,
@@ -2142,42 +2176,16 @@
                 data: new Date().toISOString()
             };
             await db.collection("leads").add(formData);
-            showToast('Sucesso! Recebemos sua mensagem.', 'success');
+            showToast('Sucesso!', 'success');
             event.target.reset();
         } catch (error) {
-            console.error(error);
-            showToast('Erro ao enviar. Tente o WhatsApp!', 'error');
+            showToast('Erro ao enviar', 'error');
         } finally {
-            btn.innerHTML = originalText;
             btn.disabled = false;
         }
     }
-
-    // --- COMANDO PARA O SITE ABRIR ---
-    window.addEventListener('load', () => {
-        const loader = document.getElementById('loader');
-        if (loader) loader.classList.add('hidden');
-    });
-</script>
-
-<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
-
-<script>
-    // CONFIGURAÇÃO DO BANCO
-    const firebaseConfig = {
-        apiKey: "AIzaSyBsFGZB3qGhQtCDN_mR_eLSC3...", 
-        authDomain: "nexsiteadmin.firebaseapp.com",
-        projectId: "nexsiteadmin",
-        storageBucket: "nexsiteadmin.firebasestorage.app",
-        messagingSenderId: "401939346793",
-        appId: "1:401939346793:web:b4b1c3d8858..."
-    };
-    if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
-    var db = firebase.firestore();
 </script>
 </body>
 </html>
 
             
-                        
