@@ -3,214 +3,375 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NexSite | Admin Master</title>
+    <title>NexSite | Painel Administrativo</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #00f2fe; --accent: #ab27ff; --darker: #020408; --dark: #0a0f1c;
-            --glass: rgba(10, 15, 28, 0.8); --border: rgba(0, 242, 254, 0.2);
-            --text: #ffffff; --text-dim: #94a3b8; --success: #22c55e; --danger: #ef4444;
+            --primary: #00f2fe;
+            --accent: #ab27ff;
+            --darker: #020408;
+            --dark: #0a0f1c;
+            --glass: rgba(10, 15, 28, 0.8);
+            --border: rgba(0, 242, 254, 0.2);
+            --text: #ffffff;
+            --text-dim: #94a3b8;
+            --success: #22c55e;
+            --warning: #f59e0b;
+            --danger: #ef4444;
             --gradient: linear-gradient(135deg, var(--primary), var(--accent));
         }
+        
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
         body { background: var(--darker); color: var(--text); }
         .hidden { display: none !important; }
         
-        /* LOGIN */
-        #login-screen { 
-            height: 100vh; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            padding: 20px; 
-            background: radial-gradient(circle at 50% 50%, rgba(171, 39, 255, 0.1) 0%, transparent 50%); 
+        /* Login */
+        #login-screen {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background: radial-gradient(circle at 50% 50%, rgba(171, 39, 255, 0.1) 0%, transparent 50%);
         }
-        .login-card { 
-            background: var(--glass); 
-            border: 1px solid var(--border); 
-            padding: 40px; 
-            border-radius: 24px; 
-            width: 100%; 
-            max-width: 400px; 
-            text-align: center; 
-            backdrop-filter: blur(20px); 
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); 
+        
+        .login-card {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            padding: 40px;
+            border-radius: 24px;
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
         }
+        
         .login-card h2 { font-size: 28px; margin-bottom: 10px; }
         .login-card p.subtitle { color: var(--text-dim); margin-bottom: 30px; font-size: 14px; }
         
-        input { 
-            width: 100%; 
-            padding: 14px 16px; 
-            border-radius: 12px; 
-            border: 1px solid var(--border); 
-            background: rgba(255,255,255,0.05); 
-            color: white; 
-            margin: 10px 0; 
-            font-size: 14px; 
-            transition: all 0.3s; 
-        }
-        input:focus { 
-            outline: none; 
-            border-color: var(--primary); 
-            box-shadow: 0 0 0 3px rgba(0, 242, 254, 0.1); 
+        input {
+            width: 100%;
+            padding: 14px 16px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            background: rgba(255,255,255,0.05);
+            color: white;
+            margin: 10px 0;
+            font-size: 14px;
+            transition: all 0.3s;
         }
         
-        button { 
-            width: 100%; 
-            padding: 14px; 
-            border: none; 
-            border-radius: 50px; 
-            background: var(--gradient); 
-            color: white; 
-            font-weight: 700; 
-            cursor: pointer; 
-            margin-top: 15px; 
-            transition: transform 0.2s, box-shadow 0.2s; 
-            font-size: 14px; 
-            text-transform: uppercase; 
-            letter-spacing: 0.5px; 
+        input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(0, 242, 254, 0.1);
         }
-        button:hover { 
-            transform: translateY(-2px); 
-            box-shadow: 0 10px 30px rgba(0, 242, 254, 0.3); 
+        
+        button {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 50px;
+            background: var(--gradient);
+            color: white;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: all 0.3s;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
-        button:active { transform: translateY(0); }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 242, 254, 0.3);
+        }
+        
         button.danger { background: var(--danger); }
         button.danger:hover { box-shadow: 0 10px 30px rgba(239, 68, 68, 0.3); }
         
-        .error-msg { 
-            margin-top: 15px; 
-            padding: 12px; 
-            background: rgba(239, 68, 68, 0.1); 
-            border: 1px solid rgba(239, 68, 68, 0.3); 
-            border-radius: 8px; 
-            color: #fca5a5; 
-            font-size: 13px; 
-            display: none; 
+        button.small {
+            padding: 8px 16px;
+            font-size: 12px;
+            width: auto;
+            margin-top: 0;
+            border-radius: 8px;
         }
+        
+        button.whatsapp { background: #25d366; }
+        button.email { background: #ea4335; }
+        
+        .error-msg {
+            margin-top: 15px;
+            padding: 12px;
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            border-radius: 8px;
+            color: #fca5a5;
+            font-size: 13px;
+            display: none;
+        }
+        
         .error-msg.show { display: block; }
         
-        /* DASHBOARD */
+        /* Dashboard */
         .wrapper { display: flex; min-height: 100vh; }
-        .sidebar { 
-            width: 280px; 
-            background: var(--dark); 
-            border-right: 1px solid var(--border); 
-            padding: 30px 20px; 
-            display: flex; 
-            flex-direction: column; 
-        }
-        .sidebar h3 { 
-            font-size: 24px; 
-            background: var(--gradient); 
-            -webkit-background-clip: text; 
-            -webkit-text-fill-color: transparent; 
-            margin-bottom: 30px; 
-        }
-        .sidebar .user-info { 
-            color: var(--primary); 
-            font-weight: 600; 
-            margin-bottom: 10px; 
-            padding: 15px; 
-            background: rgba(0, 242, 254, 0.05); 
-            border-radius: 12px; 
-            border: 1px solid var(--border); 
-            font-size: 13px; 
-            word-break: break-all; 
-        }
-        .sidebar .menu { flex: 1; margin-top: 20px; }
-        .sidebar .menu-item { 
-            padding: 12px 16px; 
-            border-radius: 10px; 
-            cursor: pointer; 
-            margin-bottom: 8px; 
-            transition: all 0.3s; 
-            color: var(--text-dim); 
-            font-size: 14px; 
-            display: flex; 
-            align-items: center; 
-            gap: 10px; 
-        }
-        .sidebar .menu-item:hover, .sidebar .menu-item.active { 
-            background: rgba(0, 242, 254, 0.1); 
-            color: var(--primary); 
+        
+        .sidebar {
+            width: 280px;
+            background: var(--dark);
+            border-right: 1px solid var(--border);
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
         }
         
-        .main { flex: 1; padding: 40px; overflow-y: auto; }
-        .header { 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            margin-bottom: 30px; 
+        .sidebar h3 {
+            font-size: 24px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 30px;
         }
+        
+        .sidebar .user-info {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 10px;
+            padding: 15px;
+            background: rgba(0, 242, 254, 0.05);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            font-size: 13px;
+            word-break: break-all;
+        }
+        
+        .sidebar .menu { flex: 1; margin-top: 20px; }
+        
+        .sidebar .menu-item {
+            padding: 12px 16px;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-bottom: 8px;
+            transition: all 0.3s;
+            color: var(--text-dim);
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .sidebar .menu-item:hover, .sidebar .menu-item.active {
+            background: rgba(0, 242, 254, 0.1);
+            color: var(--primary);
+        }
+        
+        .sidebar .stats-mini {
+            margin-top: auto;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+        }
+        
+        .sidebar .stat-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 13px;
+            color: var(--text-dim);
+        }
+        
+        .sidebar .stat-item span {
+            color: var(--primary);
+            font-weight: 700;
+        }
+        
+        .main {
+            flex: 1;
+            padding: 40px;
+            overflow-y: auto;
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
         .header h1 { font-size: 32px; font-weight: 800; }
+        
         .header .stats { display: flex; gap: 20px; }
         
-        .card { 
-            background: var(--glass); 
-            padding: 25px; 
-            border-radius: 20px; 
-            border: 1px solid var(--border); 
-            margin-bottom: 20px; 
-            backdrop-filter: blur(10px); 
+        .card {
+            background: var(--glass);
+            padding: 25px;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            margin-bottom: 20px;
+            backdrop-filter: blur(10px);
         }
-        .card h3 { 
-            font-size: 18px; 
-            margin-bottom: 20px; 
-            color: var(--text); 
-            display: flex; 
-            align-items: center; 
-            gap: 10px; 
+        
+        .card h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
+        
         .card h3 i { color: var(--primary); }
         
-        table { width: 100%; border-collapse: collapse; }
-        th { 
-            text-align: left; 
-            padding: 15px; 
-            color: var(--text-dim); 
-            font-weight: 600; 
-            font-size: 12px; 
-            text-transform: uppercase; 
-            letter-spacing: 0.5px; 
-            border-bottom: 1px solid var(--border); 
-        }
-        td { 
-            text-align: left; 
-            padding: 15px; 
-            border-bottom: 1px solid rgba(255,255,255,0.05); 
-            font-size: 14px; 
-        }
-        tr:hover { background: rgba(255,255,255,0.02); }
-        .badge { 
-            padding: 4px 12px; 
-            border-radius: 20px; 
-            font-size: 12px; 
-            font-weight: 600; 
-        }
-        .badge-pending { 
-            background: rgba(234, 179, 8, 0.1); 
-            color: #eab308; 
-            border: 1px solid rgba(234, 179, 8, 0.3); 
-        }
-        .badge-completed { 
-            background: rgba(34, 197, 94, 0.1); 
-            color: #22c55e; 
-            border: 1px solid rgba(34, 197, 94, 0.3); 
+        /* Filtros */
+        .filters {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
         }
         
-        .empty-state { 
-            text-align: center; 
-            padding: 60px 20px; 
-            color: var(--text-dim); 
+        .filters select {
+            width: auto;
+            min-width: 150px;
+            margin: 0;
+            padding: 10px 15px;
+            background: rgba(0,0,0,0.3);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: white;
         }
+        
+        /* Tabela */
+        table { width: 100%; border-collapse: collapse; }
+        
+        th {
+            text-align: left;
+            padding: 15px;
+            color: var(--text-dim);
+            font-weight: 600;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        td {
+            text-align: left;
+            padding: 15px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            font-size: 14px;
+            vertical-align: top;
+        }
+        
+        tr:hover { background: rgba(255,255,255,0.02); }
+        
+        tr.novo { border-left: 3px solid var(--primary); }
+        tr.em_contato { border-left: 3px solid var(--warning); }
+        tr.fechado { border-left: 3px solid var(--success); }
+        tr.perdido { border-left: 3px solid var(--danger); opacity: 0.7; }
+        
+        .cliente-info { display: flex; flex-direction: column; gap: 4px; }
+        .cliente-info strong { color: white; font-size: 15px; }
+        .cliente-info small { color: var(--text-dim); font-size: 12px; }
+        
+        .projeto-info { display: flex; flex-direction: column; gap: 4px; }
+        .projeto-info span { color: var(--primary); font-weight: 600; }
+        .projeto-info small {
+            color: var(--text-dim);
+            font-size: 12px;
+            max-width: 200px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        
+        .badge {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        
+        .badge-novo {
+            background: rgba(0, 242, 254, 0.1);
+            color: var(--primary);
+            border: 1px solid rgba(0, 242, 254, 0.3);
+        }
+        
+        .badge-em_contato {
+            background: rgba(245, 158, 11, 0.1);
+            color: var(--warning);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+        }
+        
+        .badge-fechado {
+            background: rgba(34, 197, 94, 0.1);
+            color: var(--success);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+        }
+        
+        .badge-perdido {
+            background: rgba(239, 68, 68, 0.1);
+            color: var(--danger);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+        
+        .acoes { display: flex; gap: 8px; flex-wrap: wrap; }
+        
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-dim);
+        }
+        
         .empty-state i { font-size: 48px; margin-bottom: 20px; opacity: 0.5; }
         
+        /* Notificação */
+        .toast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--glass);
+            border: 1px solid var(--primary);
+            padding: 20px;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            display: none;
+            animation: slideIn 0.3s ease;
+            z-index: 1000;
+            max-width: 350px;
+        }
+        
+        .toast.show { display: block; }
+        .toast h4 { color: var(--primary); margin-bottom: 5px; }
+        .toast p { font-size: 13px; color: var(--text-dim); }
+        
+        @keyframes slideIn {
+            from { transform: translateX(400px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
         /* Animações */
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
         .fade-in { animation: fadeIn 0.5s ease-out; }
+        
+        /* Responsivo */
+        @media (max-width: 768px) {
+            .sidebar { display: none; }
+            .main { padding: 20px; }
+            .header { flex-direction: column; gap: 20px; align-items: flex-start; }
+            .header .stats { width: 100%; }
+            table { font-size: 12px; }
+            th, td { padding: 10px 8px; }
+            .acoes { flex-direction: column; }
+        }
     </style>
 </head>
 <body>
@@ -219,7 +380,7 @@
     <div id="login-screen">
         <div class="login-card">
             <h2>NexSite <span style="color:var(--primary)">Admin</span></h2>
-            <p class="subtitle">Painel de Controle Master</p>
+            <p class="subtitle">Painel de Controle</p>
             <input type="email" id="email" placeholder="E-mail do Administrador" autocomplete="email">
             <input type="password" id="pass" placeholder="Senha" autocomplete="current-password">
             <button onclick="login()">Acessar Sistema</button>
@@ -235,18 +396,21 @@
                 <div class="user-info" id="user-display">Carregando...</div>
                 
                 <div class="menu">
-                    <div class="menu-item active">
+                    <div class="menu-item active" onclick="showSection('leads')">
                         <i class="fas fa-users"></i> Leads
                     </div>
-                    <div class="menu-item">
-                        <i class="fas fa-chart-line"></i> Analytics
-                    </div>
-                    <div class="menu-item">
+                    <div class="menu-item" onclick="showSection('config')">
                         <i class="fas fa-cog"></i> Configurações
                     </div>
                 </div>
                 
-                <button onclick="logout()" class="danger" style="margin-top: auto; font-size: 12px;">
+                <div class="stats-mini">
+                    <div class="stat-item">Hoje: <span id="count-hoje">0</span></div>
+                    <div class="stat-item">Novos: <span id="count-novos">0</span></div>
+                    <div class="stat-item">Total: <span id="count-total">0</span></div>
+                </div>
+                
+                <button onclick="logout()" class="danger" style="margin-top: 20px; font-size: 12px;">
                     <i class="fas fa-sign-out-alt"></i> Sair do Sistema
                 </button>
             </aside>
@@ -256,52 +420,95 @@
                     <h1>Dashboard</h1>
                     <div class="stats">
                         <div class="card" style="padding: 15px 25px; margin: 0;">
-                            <div style="font-size: 24px; font-weight: 800; color: var(--primary);">0</div>
-                            <div style="font-size: 12px; color: var(--text-dim);">Leads Hoje</div>
+                            <div style="font-size: 24px; font-weight: 800; color: var(--primary);" id="stat-hoje">0</div>
+                            <div style="font-size: 12px; color: var(--text-dim);">Hoje</div>
                         </div>
                         <div class="card" style="padding: 15px 25px; margin: 0;">
-                            <div style="font-size: 24px; font-weight: 800; color: var(--accent);">0</div>
+                            <div style="font-size: 24px; font-weight: 800; color: var(--accent);" id="stat-total">0</div>
                             <div style="font-size: 12px; color: var(--text-dim);">Total</div>
                         </div>
                     </div>
                 </div>
 
                 <!-- SEÇÃO DE LEADS -->
-                <div class="card fade-in">
+                <div class="card fade-in" id="leads-section">
                     <h3><i class="fas fa-address-book"></i> Leads e Contatos</h3>
+                    
+                    <div class="filters">
+                        <select id="filtro-status" onchange="filtrarLeads()">
+                            <option value="todos">Todos os status</option>
+                            <option value="novo">Novo</option>
+                            <option value="em_contato">Em contato</option>
+                            <option value="fechado">Fechado</option>
+                            <option value="perdido">Perdido</option>
+                        </select>
+                        <select id="filtro-periodo" onchange="filtrarLeads()">
+                            <option value="todos">Todo período</option>
+                            <option value="hoje">Hoje</option>
+                            <option value="semana">Esta semana</option>
+                            <option value="mes">Este mês</option>
+                        </select>
+                        <button class="small" onclick="marcarTodosNotificados()" style="width: auto;">
+                            <i class="fas fa-check-double"></i> Marcar todos lidos
+                        </button>
+                    </div>
+                    
                     <table>
                         <thead>
                             <tr>
                                 <th>Cliente</th>
-                                <th>E-mail</th>
                                 <th>Projeto</th>
                                 <th>Status</th>
                                 <th>Data</th>
-                                <th>Ação</th>
+                                <th>Ações</th>
                             </tr>
                         </thead>
                         <tbody id="leads-body">
                             <tr>
-                                <td colspan="6">
+                                <td colspan="5">
                                     <div class="empty-state">
-                                        <i class="fas fa-inbox"></i>
-                                        <p>Aguardando novos contatos...</p>
-                                        <p style="font-size: 12px; margin-top: 10px;">Os leads aparecerão aqui quando clientes preencherem o formulário do site</p>
+                                        <i class="fas fa-spinner fa-spin"></i>
+                                        <p>Carregando leads...</p>
                                     </div>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
+
+                <!-- SEÇÃO DE CONFIGURAÇÕES -->
+                <div class="card fade-in hidden" id="config-section">
+                    <h3><i class="fas fa-cog"></i> Configurações</h3>
+                    <div style="display: grid; gap: 20px; max-width: 500px;">
+                        <div>
+                            <label style="display: block; margin-bottom: 8px; color: var(--text-dim);">E-mail de Notificação</label>
+                            <input type="email" id="config-email" value="nexsitedigitalpatos@gmail.com" style="width: 100%;">
+                        </div>
+                        <div>
+                            <label style="display: block; margin-bottom: 8px; color: var(--text-dim);">WhatsApp de Notificação</label>
+                            <input type="text" id="config-whatsapp" value="558398015278" style="width: 100%;">
+                        </div>
+                        <button onclick="salvarConfig()" class="small" style="width: auto;">
+                            <i class="fas fa-save"></i> Salvar Configurações
+                        </button>
+                    </div>
+                </div>
             </main>
         </div>
     </div>
 
+    <!-- TOAST NOTIFICAÇÃO -->
+    <div id="toast" class="toast">
+        <h4><i class="fas fa-bell"></i> Novo Lead!</h4>
+        <p id="toast-msg">Cliente acabou de entrar em contato</p>
+    </div>
+
+    <!-- Firebase -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
         import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+        import { getFirestore, collection, query, orderBy, onSnapshot, doc, updateDoc, where, getDocs } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-        // Configuração Firebase
         const firebaseConfig = {
             apiKey: "AIzaSyBsFGZB3qGhQtCDN_mR_elSC3-QKVUmm1Q",
             authDomain: "nexsiteadmin.firebaseapp.com",
@@ -313,6 +520,10 @@
 
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        let todosLeads = [];
+        let unsubscribe = null;
 
         // Mostrar erro
         const showError = (msg) => {
@@ -336,28 +547,276 @@
                 .catch(err => showError("Erro: " + err.message));
         };
 
+        // LOGOUT
+        window.logout = () => {
+            if(confirm("Deseja realmente sair?")) {
+                if (unsubscribe) unsubscribe();
+                signOut(auth);
+            }
+        };
+
+        // FORMATAR DATA
+        const formatarData = (timestamp) => {
+            if (!timestamp) return '-';
+            const date = timestamp.toDate();
+            const agora = new Date();
+            const diff = agora - date;
+            const horas = Math.floor(diff / (1000 * 60 * 60));
+            
+            if (horas < 1) return 'Agora';
+            if (horas < 24) return `${horas}h atrás`;
+            
+            return date.toLocaleDateString('pt-BR', { 
+                day: '2-digit', 
+                month: '2-digit', 
+                hour: '2-digit', 
+                minute: '2-digit' 
+            });
+        };
+
+        // ATUALIZAR STATUS
+        window.mudarStatus = async (id, novoStatus) => {
+            try {
+                await updateDoc(doc(db, 'leads', id), { 
+                    status: novoStatus,
+                    atualizadoEm: new Date()
+                });
+            } catch (err) {
+                alert('Erro ao atualizar: ' + err.message);
+            }
+        };
+
+        // MARCAR COMO NOTIFICADO
+        window.marcarNotificado = async (id) => {
+            try {
+                await updateDoc(doc(db, 'leads', id), { 
+                    notificado: true 
+                });
+            } catch (err) {
+                console.error('Erro:', err);
+            }
+        };
+
+        // MARCAR TODOS COMO LIDOS
+        window.marcarTodosNotificados = async () => {
+            if (!confirm('Marcar todos os leads como lidos?')) return;
+            
+            const naoNotificados = todosLeads.filter(l => !l.notificado);
+            for (const lead of naoNotificados) {
+                await updateDoc(doc(db, 'leads', lead.id), { notificado: true });
+            }
+            alert(`${naoNotificados.length} leads marcados como lidos!`);
+        };
+
+        // ABRIR WHATSAPP
+        window.abrirWhats = (telefone, nome) => {
+            const num = telefone.replace(/\D/g, '');
+            const msg = encodeURIComponent(`Olá ${nome}! Vi seu interesse no projeto. Vamos conversar?`);
+            window.open(`https://wa.me/55${num}?text=${msg}`, '_blank');
+        };
+
+        // ENVIAR EMAIL
+        window.enviarEmail = (email, nome, tipoProjeto) => {
+            const assunto = encodeURIComponent(`Re: Seu projeto ${tipoProjeto} - NexSite Digital`);
+            const corpo = encodeURIComponent(`Olá ${nome},\n\nObrigado pelo interesse em nossos serviços!\n\n...`);
+            window.open(`mailto:${email}?subject=${assunto}&body=${corpo}`, '_blank');
+        };
+
+        // RENDERIZAR TABELA
+        const renderizarTabela = (leads) => {
+            const tbody = document.getElementById('leads-body');
+            
+            if (leads.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="5">
+                            <div class="empty-state">
+                                <i class="fas fa-inbox"></i>
+                                <p>Nenhum lead encontrado</p>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            tbody.innerHTML = leads.map(lead => `
+                <tr class="${lead.status} ${!lead.notificado ? 'nao-lido' : ''}" style="${!lead.notificado ? 'background: rgba(0, 242, 254, 0.05);' : ''}">
+                    <td>
+                        <div class="cliente-info">
+                            <strong>${lead.nome}</strong>
+                            <small>${lead.email}</small>
+                            ${lead.telefone ? `<small>📱 ${lead.telefone}</small>` : ''}
+                            ${!lead.notificado ? '<span style="color: var(--primary); font-size: 10px;">● NOVO</span>' : ''}
+                        </div>
+                    </td>
+                    <td>
+                        <div class="projeto-info">
+                            <span>${lead.tipoProjeto}</span>
+                            <small title="${lead.descricao}">${lead.descricao || 'Sem descrição'}</small>
+                        </div>
+                    </td>
+                    <td>
+                        <select onchange="mudarStatus('${lead.id}', this.value)" style="width: auto; font-size: 11px; padding: 6px 10px; background: rgba(0,0,0,0.3); border: 1px solid var(--border); border-radius: 6px; color: white;">
+                            <option value="novo" ${lead.status === 'novo' ? 'selected' : ''}>Novo</option>
+                            <option value="em_contato" ${lead.status === 'em_contato' ? 'selected' : ''}>Em contato</option>
+                            <option value="fechado" ${lead.status === 'fechado' ? 'selected' : ''}>Fechado</option>
+                            <option value="perdido" ${lead.status === 'perdido' ? 'selected' : ''}>Perdido</option>
+                        </select>
+                    </td>
+                    <td style="color: var(--text-dim); font-size: 12px;">
+                        ${formatarData(lead.data)}
+                    </td>
+                    <td>
+                        <div class="acoes">
+                            ${lead.telefone ? `<button class="small whatsapp" onclick="abrirWhats('${lead.telefone}', '${lead.nome}')"><i class="fab fa-whatsapp"></i></button>` : ''}
+                            <button class="small email" onclick="enviarEmail('${lead.email}', '${lead.nome}', '${lead.tipoProjeto}')"><i class="fas fa-envelope"></i></button>
+                            ${!lead.notificado ? `<button class="small" onclick="marcarNotificado('${lead.id}')" style="background: var(--primary);"><i class="fas fa-check"></i></button>` : ''}
+                        </div>
+                    </td>
+                </tr>
+            `).join('');
+        };
+
+        // FILTRAR LEADS
+        window.filtrarLeads = () => {
+            const statusFiltro = document.getElementById('filtro-status').value;
+            const periodoFiltro = document.getElementById('filtro-periodo').value;
+            
+            let filtrados = [...todosLeads];
+            
+            // Filtro status
+            if (statusFiltro !== 'todos') {
+                filtrados = filtrados.filter(l => l.status === statusFiltro);
+            }
+            
+            // Filtro período
+            if (periodoFiltro !== 'todos') {
+                const agora = new Date();
+                filtrados = filtrados.filter(l => {
+                    if (!l.data) return false;
+                    const dataLead = l.data.toDate();
+                    const diffDias = Math.floor((agora - dataLead) / (1000 * 60 * 60 * 24));
+                    
+                    if (periodoFiltro === 'hoje') return diffDias < 1;
+                    if (periodoFiltro === 'semana') return diffDias < 7;
+                    if (periodoFiltro === 'mes') return diffDias < 30;
+                    return true;
+                });
+            }
+            
+            renderizarTabela(filtrados);
+            atualizarStats(filtrados);
+        };
+
+        // ATUALIZAR ESTATÍSTICAS
+        const atualizarStats = (leads) => {
+            const hoje = new Date();
+            const leadsHoje = leads.filter(l => {
+                if (!l.data) return false;
+                const dataLead = l.data.toDate();
+                return dataLead.toDateString() === hoje.toDateString();
+            });
+            
+            const naoNotificados = leads.filter(l => !l.notificado);
+            
+            document.getElementById('stat-hoje').textContent = leadsHoje.length;
+            document.getElementById('stat-total').textContent = leads.length;
+            document.getElementById('count-hoje').textContent = leadsHoje.length;
+            document.getElementById('count-total').textContent = leads.length;
+            document.getElementById('count-novos').textContent = naoNotificados.length;
+        };
+
+        // MOSTRAR TOAST
+        const mostrarToast = (nome) => {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-msg').textContent = `${nome} acabou de solicitar um projeto!`;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 5000);
+        };
+
+        // TROCAR SEÇÃO
+        window.showSection = (section) => {
+            document.querySelectorAll('.menu-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            event.target.closest('.menu-item').classList.add('active');
+            
+            document.getElementById('leads-section').classList.add('hidden');
+            document.getElementById('config-section').classList.add('hidden');
+            
+            if (section === 'leads') {
+                document.getElementById('leads-section').classList.remove('hidden');
+            } else if (section === 'config') {
+                document.getElementById('config-section').classList.remove('hidden');
+            }
+        };
+
+        // SALVAR CONFIG
+        window.salvarConfig = () => {
+            const email = document.getElementById('config-email').value;
+            const whatsapp = document.getElementById('config-whatsapp').value;
+            localStorage.setItem('nexsite_config', JSON.stringify({ email, whatsapp }));
+            alert('Configurações salvas!');
+        };
+
+        // CARREGAR CONFIG
+        const carregarConfig = () => {
+            const config = localStorage.getItem('nexsite_config');
+            if (config) {
+                const { email, whatsapp } = JSON.parse(config);
+                document.getElementById('config-email').value = email;
+                document.getElementById('config-whatsapp').value = whatsapp;
+            }
+        };
+
+        // CARREGAR LEADS EM TEMPO REAL
+        const carregarLeads = () => {
+            const q = query(collection(db, 'leads'), orderBy('data', 'desc'));
+            
+            unsubscribe = onSnapshot(q, (snapshot) => {
+                const leadsAnteriores = todosLeads.length;
+                
+                todosLeads = snapshot.docs.map(doc => ({
+                    id: doc.id,
+                    ...doc.data()
+                }));
+                
+                // Notificar se chegou lead novo não notificado
+                const novosNaoNotificados = todosLeads.filter(l => !l.notificado);
+                if (leadsAnteriores > 0 && novosNaoNotificados.length > 0) {
+                    const ultimo = novosNaoNotificados[0];
+                    mostrarToast(ultimo.nome);
+                    // Tocar som de notificação (opcional)
+                    // new Audio('notificacao.mp3').play().catch(e => {});
+                }
+                
+                filtrarLeads();
+            }, (err) => {
+                console.error('Erro ao carregar leads:', err);
+                document.getElementById('leads-body').innerHTML = `
+                    <tr><td colspan="5" style="text-align: center; color: var(--danger); padding: 40px;">
+                        Erro ao carregar dados. Recarregue a página.
+                    </td></tr>
+                `;
+            });
+        };
+
         // MONITOR DE SESSÃO
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 document.getElementById('login-screen').classList.add('hidden');
                 document.getElementById('admin-dashboard').classList.remove('hidden');
-                document.getElementById('user-display').innerHTML = `
-                    <i class="fas fa-shield-alt"></i> ${user.email}
-                `;
+                document.getElementById('user-display').innerHTML = `<i class="fas fa-shield-alt"></i> ${user.email}`;
+                carregarLeads();
+                carregarConfig();
             } else {
                 document.getElementById('login-screen').classList.remove('hidden');
                 document.getElementById('admin-dashboard').classList.add('hidden');
-                // Limpar senha ao sair
                 document.getElementById('pass').value = '';
+                if (unsubscribe) unsubscribe();
             }
         });
-
-        // LOGOUT
-        window.logout = () => {
-            if(confirm("Deseja realmente sair do sistema?")) {
-                signOut(auth);
-            }
-        };
 
         // ENTER para login
         document.getElementById('pass')?.addEventListener('keypress', (e) => {
