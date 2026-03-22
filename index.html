@@ -2131,6 +2131,24 @@
                 window.open('https://wa.me/+558398015278?text=Olá! Gostaria de solicitar um orçamento.', '_blank');
             }, 1500);
         }
+        // --- CONFIGURAÇÃO DO FIREBASE (NEXSITE) ---
+const firebaseConfig = {
+  apiKey: "AIzaSyBsFGZB3qGhQtCDN_mR_eLSC3...", 
+  authDomain: "nexsiteadmin.firebaseapp.com",
+  projectId: "nexsiteadmin",
+  storageBucket: "nexsiteadmin.firebasestorage.app",
+  messagingSenderId: "401939346793",
+  appId: "1:401939346793:web:b4b1c3d8858..."
+};
+
+// Inicializa o Firebase antes das funções começarem
+if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
+}
+const db = firebase.firestore();
+
+// ------------------------------------------
+        
 
         // Contact Form
         
@@ -2322,8 +2340,9 @@
         // Mobile Menu Toggle
         function toggleMobileMenu() {
             // Implement mobile menu logic here
-            showToast('Menu mobile em desenvolvimento', 'success');
-        }
-    </script>
+            
+</script>
+    
+    
 </body>
 </html>
