@@ -19,7 +19,7 @@
     <!-- Firebase SDK -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getFirestore, collection, addDoc, serverTimestamp, enableNetwork, disableNetwork } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+        import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
         
         const firebaseConfig = {
             apiKey: "AIzaSyBsFGZB3qGhQtCDN_mR_elSC3-QKVUmm1Q",
@@ -34,9 +34,7 @@
             const app = initializeApp(firebaseConfig);
             const db = getFirestore(app);
             
-            // Testar conexão
-            console.log("Firebase inicializado com sucesso!");
-            console.log("Projeto:", firebaseConfig.projectId);
+            console.log("Firebase inicializado!");
             
             window.db = db;
             window.collection = collection;
@@ -45,7 +43,7 @@
             window.firebaseInitialized = true;
             
         } catch (error) {
-            console.error("Erro ao inicializar Firebase:", error);
+            console.error("Erro Firebase:", error);
             window.firebaseInitialized = false;
         }
     </script>
@@ -68,13 +66,12 @@
             --text-secondary: #94a3b8;
             --text-muted: #64748b;
             --gradient-primary: linear-gradient(135deg, var(--primary), var(--accent));
-            --gradient-dark: linear-gradient(180deg, rgba(3,7,18,0) 0%, var(--dark) 100%);
             --shadow-glow: 0 0 40px rgba(0, 242, 254, 0.3);
-            --shadow-card: 0 10px 40px rgba(0, 0, 0, 0.4);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
+        
         body {
             font-family: 'Inter', sans-serif;
             background: var(--darker);
@@ -86,10 +83,7 @@
         /* Background Effects */
         .bg-grid {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0; width: 100%; height: 100%;
             background-image: 
                 linear-gradient(rgba(0, 242, 254, 0.03) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(0, 242, 254, 0.03) 1px, transparent 1px);
@@ -100,10 +94,7 @@
 
         .bg-gradient {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0; width: 100%; height: 100%;
             background: 
                 radial-gradient(ellipse at 20% 20%, rgba(0, 242, 254, 0.15) 0%, transparent 50%),
                 radial-gradient(ellipse at 80% 80%, rgba(171, 39, 255, 0.15) 0%, transparent 50%),
@@ -114,10 +105,7 @@
 
         #matrix {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0; width: 100%; height: 100%;
             z-index: -1;
             opacity: 0.08;
             pointer-events: none;
@@ -131,9 +119,7 @@
         /* Navigation */
         .navbar {
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
+            top: 0; left: 0; right: 0;
             z-index: 1000;
             padding: 20px 5%;
             display: flex;
@@ -173,7 +159,6 @@
             letter-spacing: -1px;
             line-height: 1;
             color: #ffffff;
-            font-family: 'Inter', sans-serif;
         }
 
         .logo-text span {
@@ -202,10 +187,8 @@
         .nav-links a::after {
             content: '';
             position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
+            bottom: -5px; left: 0;
+            width: 0; height: 2px;
             background: var(--gradient-primary);
             transition: width 0.3s ease;
         }
@@ -437,16 +420,13 @@
             box-shadow: 0 4px 20px rgba(0, 242, 254, 0.4);
             position: relative;
             overflow: hidden;
-            border: none;
         }
 
         .btn-primary::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
             background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
             transition: left 0.5s ease;
         }
@@ -506,11 +486,8 @@
             letter-spacing: 1px;
         }
 
-        /* Section Common Styles */
-        section {
-            padding: 100px 5%;
-            position: relative;
-        }
+        /* Sections */
+        section { padding: 100px 5%; position: relative; }
 
         .section-header {
             text-align: center;
@@ -544,7 +521,7 @@
             color: var(--text-secondary);
         }
 
-        /* Services Section */
+        /* Services */
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -567,10 +544,8 @@
         .service-card::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 3px;
+            top: 0; left: 0;
+            width: 100%; height: 3px;
             background: var(--gradient-primary);
             transform: scaleX(0);
             transition: transform 0.4s ease;
@@ -585,8 +560,7 @@
         .service-card:hover::before { transform: scaleX(1); }
 
         .service-icon {
-            width: 70px;
-            height: 70px;
+            width: 70px; height: 70px;
             background: var(--gradient-primary);
             border-radius: 16px;
             display: flex;
@@ -629,7 +603,7 @@
             font-size: 0.9rem;
         }
 
-        /* Portfolio Section */
+        /* Portfolio */
         .portfolio {
             background: linear-gradient(180deg, var(--dark) 0%, rgba(10,15,28,0.5) 50%, var(--dark) 100%);
         }
@@ -674,7 +648,6 @@
             overflow: hidden;
             aspect-ratio: 16/10;
             cursor: pointer;
-            group: portfolio;
         }
 
         .portfolio-item img {
@@ -729,7 +702,7 @@
             color: var(--primary);
         }
 
-        /* Pricing Section */
+        /* Pricing */
         .pricing-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -887,8 +860,7 @@
         .testimonial-card::before {
             content: '"';
             position: absolute;
-            top: 20px;
-            right: 30px;
+            top: 20px; right: 30px;
             font-size: 6rem;
             color: var(--primary);
             opacity: 0.2;
@@ -917,8 +889,7 @@
         }
 
         .author-avatar {
-            width: 50px;
-            height: 50px;
+            width: 50px; height: 50px;
             border-radius: 50%;
             background: var(--gradient-primary);
             display: flex;
@@ -938,7 +909,7 @@
             font-size: 0.9rem;
         }
 
-        /* Contact Section */
+        /* Contact */
         .contact-container {
             max-width: 800px;
             margin: 0 auto;
@@ -1026,8 +997,7 @@
 
         .submit-btn .loading {
             display: inline-block;
-            width: 20px;
-            height: 20px;
+            width: 20px; height: 20px;
             border: 2px solid white;
             border-top-color: transparent;
             border-radius: 50%;
@@ -1061,29 +1031,6 @@
             margin-bottom: 20px;
         }
 
-        .footer-logo-icon {
-            width: 40px;
-            height: 40px;
-            background: var(--gradient-primary);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 900;
-            color: white;
-        }
-
-        .footer-logo-text {
-            font-size: 1.3rem;
-            font-weight: 800;
-        }
-
-        .footer-logo-text span {
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
         .footer-description {
             color: var(--text-secondary);
             line-height: 1.8;
@@ -1096,8 +1043,7 @@
         }
 
         .social-links a {
-            width: 45px;
-            height: 45px;
+            width: 45px; height: 45px;
             background: var(--glass-light);
             border: 1px solid var(--border);
             border-radius: 12px;
@@ -1188,10 +1134,8 @@
 
         .modal-close {
             position: absolute;
-            top: 20px;
-            right: 20px;
-            width: 40px;
-            height: 40px;
+            top: 20px; right: 20px;
+            width: 40px; height: 40px;
             background: var(--glass-light);
             border: 1px solid var(--border);
             border-radius: 50%;
@@ -1248,7 +1192,7 @@
             transform: translateY(0);
         }
 
-        /* Toast Notification */
+        /* Toast */
         .toast {
             position: fixed;
             bottom: 30px;
@@ -1270,8 +1214,7 @@
         .toast.show { transform: translateX(0); }
 
         .toast-icon {
-            width: 40px;
-            height: 40px;
+            width: 40px; height: 40px;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -1289,7 +1232,7 @@
             color: var(--error);
         }
 
-        /* Loading Animation */
+        /* Loading */
         .loader {
             position: fixed;
             inset: 0;
@@ -1309,8 +1252,7 @@
         .loader-content { text-align: center; }
 
         .loader-spinner {
-            width: 60px;
-            height: 60px;
+            width: 60px; height: 60px;
             border: 3px solid var(--glass-light);
             border-top-color: var(--primary);
             border-radius: 50%;
@@ -1325,43 +1267,18 @@
             animation: pulse 1.5s infinite;
         }
 
-        /* Debug Panel - REMOVER EM PRODUÇÃO */
-        .debug-panel {
-            position: fixed;
-            bottom: 100px;
-            right: 30px;
-            background: rgba(239, 68, 68, 0.9);
-            color: white;
-            padding: 15px;
-            border-radius: 12px;
-            font-size: 12px;
-            z-index: 9999;
-            max-width: 300px;
-            display: none;
-        }
-
-        .debug-panel.show { display: block; }
-
         /* Responsive */
         @media (max-width: 968px) {
-            .nav-links,
-            .nav-cta { display: none; }
-
+            .nav-links, .nav-cta { display: none; }
             .mobile-menu-btn { display: flex; }
-
             .hero-stats { gap: 30px; }
-
             .footer-content {
                 grid-template-columns: 1fr 1fr;
                 gap: 40px;
             }
-
             .pricing-card.featured { transform: scale(1); }
-
             .form-row { grid-template-columns: 1fr; }
-
             .logo-text { font-size: 1.6rem; }
-            
             .logo img { height: 40px; }
         }
 
@@ -1371,49 +1288,28 @@
                 width: 100%;
                 padding: 0 20px;
             }
-
-            .btn-primary,
-            .btn-secondary {
+            .btn-primary, .btn-secondary {
                 width: 100%;
                 justify-content: center;
             }
-
             .hero-stats {
                 flex-direction: column;
                 gap: 20px;
             }
-
-            .services-grid,
-            .portfolio-grid,
-            .testimonials-grid { grid-template-columns: 1fr; }
-
+            .services-grid, .portfolio-grid, .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
             .footer-content {
                 grid-template-columns: 1fr;
                 text-align: center;
             }
-
-            .footer-logo,
-            .social-links { justify-content: center; }
-
+            .footer-logo, .social-links { justify-content: center; }
             .contact-container { padding: 30px 20px; }
-
             .mobile-nav { width: 85%; }
-        }
-
-        @media (max-width: 380px) {
-            .mobile-nav { padding: 100px 25px 40px; }
-            
-            .mobile-nav-links a { font-size: 1.1rem; }
         }
     </style>
 </head>
 <body>
-    <!-- DEBUG PANEL - REMOVER EM PRODUÇÃO -->
-    <div class="debug-panel" id="debug-panel">
-        <strong>Debug Firebase:</strong>
-        <div id="debug-msg">Testando...</div>
-    </div>
-
     <div class="loader" id="loader">
         <div class="loader-content">
             <div class="loader-spinner"></div>
@@ -1425,10 +1321,8 @@
     <div class="bg-gradient"></div>
     <canvas id="matrix"></canvas>
 
-    <!-- Overlay para fechar menu ao clicar fora -->
     <div class="mobile-nav-overlay" id="mobile-nav-overlay" onclick="toggleMobileMenu()"></div>
 
-    <!-- Menu Mobile -->
     <nav class="mobile-nav" id="mobile-nav">
         <ul class="mobile-nav-links">
             <li><a href="#inicio" onclick="toggleMobileMenu()"><i class="fas fa-home"></i> Início</a></li>
@@ -1437,11 +1331,9 @@
             <li><a href="#precos" onclick="toggleMobileMenu()"><i class="fas fa-tags"></i> Preços</a></li>
             <li><a href="#contato" onclick="toggleMobileMenu()"><i class="fas fa-envelope"></i> Contato</a></li>
         </ul>
-        
         <a href="https://wa.me/+558398015278" target="_blank" class="mobile-nav-cta" onclick="toggleMobileMenu()">
             <i class="fab fa-whatsapp"></i> Fale Conosco Agora
         </a>
-        
         <div class="mobile-nav-footer">
             <p>NexSite Digital © 2026</p>
             <p style="font-size: 0.8rem; margin-top: 5px;">Patos, PB - Brasil</p>
@@ -1453,7 +1345,6 @@
             <img src="https://i.postimg.cc/vHNm4G9v/IMG_20260317_WA0001_2.jpg" alt="NexSite Digital">
             <div class="logo-text">Nex<span>Site</span></div>
         </a>
-        
         <ul class="nav-links">
             <li><a href="#inicio">Início</a></li>
             <li><a href="#servicos">Serviços</a></li>
@@ -1461,15 +1352,11 @@
             <li><a href="#precos">Preços</a></li>
             <li><a href="#contato">Contato</a></li>
         </ul>
-
         <a href="https://wa.me/+558398015278" target="_blank" class="nav-cta">
             <i class="fab fa-whatsapp"></i> Fale Conosco
         </a>
-
         <button class="mobile-menu-btn" id="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Menu">
-            <span></span>
-            <span></span>
-            <span></span>
+            <span></span><span></span><span></span>
         </button>
     </nav>
 
@@ -1479,28 +1366,22 @@
                 <i class="fas fa-rocket"></i>
                 Transformando ideias em realidade digital
             </div>
-            
             <h1>
                 Criamos Experiências<br>
                 <span class="gradient-text">Digitais que Vendem</span>
             </h1>
-            
             <p class="hero-description">
                 Sites profissionais, landing pages de alta conversão e sistemas web 
                 personalizados para impulsionar seu negócio no mundo digital.
             </p>
-            
             <div class="hero-buttons">
                 <a href="#precos" class="btn-primary">
-                    <i class="fas fa-play"></i>
-                    Começar Projeto
+                    <i class="fas fa-play"></i> Começar Projeto
                 </a>
                 <a href="#portfolio" class="btn-secondary">
-                    <i class="fas fa-eye"></i>
-                    Ver Portfólio
+                    <i class="fas fa-eye"></i> Ver Portfólio
                 </a>
             </div>
-
             <div class="hero-stats">
                 <div class="stat-item">
                     <div class="stat-number" data-count="150">0</div>
@@ -1522,91 +1403,37 @@
         <div class="section-header reveal">
             <span class="section-tag">Nossos Serviços</span>
             <h2 class="section-title">Soluções Completas para seu<br>Negócio Digital</h2>
-            <p class="section-subtitle">Oferecemos um ecossistema completo de serviços digitais para alavancar sua presença online</p>
+            <p class="section-subtitle">Oferecemos um ecossistema completo de serviços digitais</p>
         </div>
-
         <div class="services-grid">
             <div class="service-card reveal">
-                <div class="service-icon">
-                    <i class="fas fa-laptop-code"></i>
-                </div>
+                <div class="service-icon"><i class="fas fa-laptop-code"></i></div>
                 <h3>Sites Institucionais</h3>
-                <p>Presença online profissional com design moderno, responsivo e otimizado para mecanismos de busca.</p>
+                <p>Presença online profissional com design moderno e responsivo.</p>
                 <ul class="service-features">
                     <li><i class="fas fa-check"></i> Design Responsivo</li>
                     <li><i class="fas fa-check"></i> SEO Otimizado</li>
                     <li><i class="fas fa-check"></i> Alta Performance</li>
-                    <li><i class="fas fa-check"></i> Painel Administrativo</li>
                 </ul>
             </div>
-
             <div class="service-card reveal">
-                <div class="service-icon">
-                    <i class="fas fa-rocket"></i>
-                </div>
+                <div class="service-icon"><i class="fas fa-rocket"></i></div>
                 <h3>Landing Pages</h3>
-                <p>Páginas de alta conversão focadas em resultados. Transforme visitantes em leads qualificados.</p>
+                <p>Páginas de alta conversão focadas em resultados.</p>
                 <ul class="service-features">
                     <li><i class="fas fa-check"></i> Copywriting Persuasivo</li>
                     <li><i class="fas fa-check"></i> A/B Testing</li>
-                    <li><i class="fas fa-check"></i> Integração com CRM</li>
                     <li><i class="fas fa-check"></i> Analytics Avançado</li>
                 </ul>
             </div>
-
             <div class="service-card reveal">
-                <div class="service-icon">
-                    <i class="fas fa-shopping-cart"></i>
-                </div>
+                <div class="service-icon"><i class="fas fa-shopping-cart"></i></div>
                 <h3>E-commerce</h3>
-                <p>Lojas virtuais completas com integração de pagamentos, gestão de estoque e relatórios detalhados.</p>
+                <p>Lojas virtuais completas com integração de pagamentos.</p>
                 <ul class="service-features">
                     <li><i class="fas fa-check"></i> Pagamentos Integrados</li>
                     <li><i class="fas fa-check"></i> Gestão de Produtos</li>
                     <li><i class="fas fa-check"></i> Relatórios de Vendas</li>
-                    <li><i class="fas fa-check"></i> Área do Cliente</li>
-                </ul>
-            </div>
-
-            <div class="service-card reveal">
-                <div class="service-icon">
-                    <i class="fas fa-mobile-alt"></i>
-                </div>
-                <h3>Aplicativos Web</h3>
-                <p>Sistemas web progressivos (PWA) que funcionam como apps nativos em qualquer dispositivo.</p>
-                <ul class="service-features">
-                    <li><i class="fas fa-check"></i> Instalável no Celular</li>
-                    <li><i class="fas fa-check"></i> Notificações Push</li>
-                    <li><i class="fas fa-check"></i> Funciona Offline</li>
-                    <li><i class="fas fa-check"></i> Sincronização em Tempo Real</li>
-                </ul>
-            </div>
-
-            <div class="service-card reveal">
-                <div class="service-icon">
-                    <i class="fas fa-paint-brush"></i>
-                </div>
-                <h3>Identidade Visual</h3>
-                <p>Criação de marca completa: logo, paleta de cores, tipografia e manual de identidade visual.</p>
-                <ul class="service-features">
-                    <li><i class="fas fa-check"></i> Logo Profissional</li>
-                    <li><i class="fas fa-check"></i> Paleta de Cores</li>
-                    <li><i class="fas fa-check"></i> Tipografia</li>
-                    <li><i class="fas fa-check"></i> Manual da Marca</li>
-                </ul>
-            </div>
-
-            <div class="service-card reveal">
-                <div class="service-icon">
-                    <i class="fas fa-search"></i>
-                </div>
-                <h3>Marketing Digital</h3>
-                <p>Estratégias de tráfego pago, SEO técnico e conteúdo para alavancar seus resultados.</p>
-                <ul class="service-features">
-                    <li><i class="fas fa-check"></i> Google Ads</li>
-                    <li><i class="fas fa-check"></i> Facebook/Instagram Ads</li>
-                    <li><i class="fas fa-check"></i> SEO Técnico</li>
-                    <li><i class="fas fa-check"></i> Conteúdo Estratégico</li>
                 </ul>
             </div>
         </div>
@@ -1616,80 +1443,25 @@
         <div class="section-header reveal">
             <span class="section-tag">Portfólio</span>
             <h2 class="section-title">Projetos que Fizeram a<br>Diferença</h2>
-            <p class="section-subtitle">Conheça alguns dos nossos trabalhos mais recentes e os resultados que alcançamos</p>
         </div>
-
         <div class="portfolio-filter reveal">
             <button class="filter-btn active" onclick="filterPortfolio('all')">Todos</button>
             <button class="filter-btn" onclick="filterPortfolio('ecommerce')">E-commerce</button>
             <button class="filter-btn" onclick="filterPortfolio('landing')">Landing Pages</button>
-            <button class="filter-btn" onclick="filterPortfolio('institucional')">Institucional</button>
         </div>
-
         <div class="portfolio-grid" id="portfolio-grid">
             <div class="portfolio-item reveal" data-category="ecommerce">
                 <img src="https://paraibacriativa.com.br/wp-content/uploads/2015/11/Patos.jpg" alt="E-commerce">
                 <div class="portfolio-overlay">
                     <span class="portfolio-category">NEX SITE DIGITAL</span>
                     <h3 class="portfolio-title">AGORA EM PATOS-PB</h3>
-                    <a href="#" class="portfolio-link">
-                        Ver Projeto <i class="fas fa-arrow-right"></i>
-                    </a>
                 </div>
             </div>
-
             <div class="portfolio-item reveal" data-category="landing">
                 <img src="https://i.postimg.cc/Nf4XNLn6/Picsart-26-03-21-20-51-26-002.jpg" alt="Landing Page">
                 <div class="portfolio-overlay">
                     <span class="portfolio-category">Landing Page</span>
                     <h3 class="portfolio-title">Curso Online Pro</h3>
-                    <a href="#" class="portfolio-link">
-                        Ver Projeto <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
-
-            <div class="portfolio-item reveal" data-category="institucional">
-                <img src="https://i.postimg.cc/6pqhndQj/Picsart-26-03-21-21-12-12-440.jpg" alt="Site Institucional">
-                <div class="portfolio-overlay">
-                    <span class="portfolio-category">Institucional</span>
-                    <h3 class="portfolio-title">Tech Solutions Corp</h3>
-                    <a href="#" class="portfolio-link">
-                        Ver Projeto <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
-
-            <div class="portfolio-item reveal" data-category="ecommerce">
-                <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800" alt="E-commerce">
-                <div class="portfolio-overlay">
-                    <span class="portfolio-category">E-commerce</span>
-                    <h3 class="portfolio-title">Supermercado Online</h3>
-                    <a href="#" class="portfolio-link">
-                        Ver Projeto <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
-
-            <div class="portfolio-item reveal" data-category="landing">
-                <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=800" alt="Landing Page">
-                <div class="portfolio-overlay">
-                    <span class="portfolio-category">Landing Page</span>
-                    <h3 class="portfolio-title">App de Delivery</h3>
-                    <a href="#" class="portfolio-link">
-                        Ver Projeto <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
-
-            <div class="portfolio-item reveal" data-category="institucional">
-                <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=800" alt="Site Institucional">
-                <div class="portfolio-overlay">
-                    <span class="portfolio-category">Institucional</span>
-                    <h3 class="portfolio-title">Escritório de Advocacia</h3>
-                    <a href="#" class="portfolio-link">
-                        Ver Projeto <i class="fas fa-arrow-right"></i>
-                    </a>
                 </div>
             </div>
         </div>
@@ -1699,138 +1471,29 @@
         <div class="section-header reveal">
             <span class="section-tag">Investimento</span>
             <h2 class="section-title">Planos Transparentes<br>Sem Surpresas</h2>
-            <p class="section-subtitle">Escolha o plano ideal para seu negócio. Todos incluem suporte técnico e hospedagem por 1 ano.</p>
         </div>
-
         <div class="pricing-grid">
             <div class="pricing-card reveal">
                 <div class="pricing-header">
                     <h3 class="pricing-name">Starter</h3>
                     <div class="pricing-price">R$ 1.000<span>/único</span></div>
-                    <p class="pricing-description">Perfeito para profissionais liberais e pequenos negócios</p>
                 </div>
                 <ul class="pricing-features">
                     <li><i class="fas fa-check"></i> Site One Page</li>
                     <li><i class="fas fa-check"></i> Design Responsivo</li>
-                    <li><i class="fas fa-check"></i> Formulário de Contato</li>
-                    <li><i class="fas fa-check"></i> Otimização SEO Básica</li>
-                    <li><i class="fas fa-check"></i> Hospedagem 1 Ano</li>
-                    <li><i class="fas fa-check"></i> Certificado SSL</li>
-                    <li class="not-included"><i class="fas fa-times"></i> Painel Administrativo</li>
-                    <li class="not-included"><i class="fas fa-times"></i> Blog Integrado</li>
                 </ul>
                 <button class="pricing-btn" onclick="openModal('starter')">Quero Este Plano</button>
             </div>
-
             <div class="pricing-card featured reveal">
                 <div class="pricing-header">
                     <h3 class="pricing-name">Business</h3>
                     <div class="pricing-price">R$ 1.500<span>/único</span></div>
-                    <p class="pricing-description">Ideal para empresas que precisam de mais recursos</p>
                 </div>
                 <ul class="pricing-features">
                     <li><i class="fas fa-check"></i> Site até 5 Páginas</li>
-                    <li><i class="fas fa-check"></i> Design Premium</li>
                     <li><i class="fas fa-check"></i> Painel Administrativo</li>
-                    <li><i class="fas fa-check"></i> Blog Integrado</li>
-                    <li><i class="fas fa-check"></i> Otimização SEO Avançada</li>
-                    <li><i class="fas fa-check"></i> Integração WhatsApp</li>
-                    <li><i class="fas fa-check"></i> Hospedagem 1 Ano</li>
-                    <li><i class="fas fa-check"></i> Suporte Técnico 30 dias</li>
                 </ul>
                 <button class="pricing-btn" onclick="openModal('business')">Quero Este Plano</button>
-            </div>
-
-            <div class="pricing-card reveal">
-                <div class="pricing-header">
-                    <h3 class="pricing-name">E-commerce</h3>
-                    <div class="pricing-price">R$ 2.500<span>/único</span></div>
-                    <p class="pricing-description">Loja virtual completa para vender online</p>
-                </div>
-                <ul class="pricing-features">
-                    <li><i class="fas fa-check"></i> Loja Virtual Completa</li>
-                    <li><i class="fas fa-check"></i> Carrinho de Compras</li>
-                    <li><i class="fas fa-check"></i> Pagamentos Integrados</li>
-                    <li><i class="fas fa-check"></i> Gestão de Estoque</li>
-                    <li><i class="fas fa-check"></i> Área do Cliente</li>
-                    <li><i class="fas fa-check"></i> Relatórios de Vendas</li>
-                    <li><i class="fas fa-check"></i> SEO para Produtos</li>
-                    <li><i class="fas fa-check"></i> Suporte Técnico 60 dias</li>
-                </ul>
-                <button class="pricing-btn" onclick="openModal('ecommerce')">Quero Este Plano</button>
-            </div>
-        </div>
-    </section>
-
-    <section class="testimonials">
-        <div class="section-header reveal">
-            <span class="section-tag">Depoimentos</span>
-            <h2 class="section-title">O que Nossos Clientes<br>Dizem</h2>
-            <p class="section-subtitle">Histórias reais de quem transformou seu negócio com nossas soluções</p>
-        </div>
-
-        <div class="testimonials-grid">
-            <div class="testimonial-card reveal">
-                <div class="testimonial-stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                </div>
-                <p class="testimonial-text">
-                    "A NexSite transformou completamente nossa presença digital. Em apenas 2 meses, 
-                    nossas vendas online aumentaram em 180%. O suporte é excepcional!"
-                </p>
-                <div class="testimonial-author">
-                    <div class="author-avatar">MR</div>
-                    <div class="author-info">
-                        <h4>Mariana Rocha</h4>
-                        <p>CEO, Fashion Store</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="testimonial-card reveal">
-                <div class="testimonial-stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                </div>
-                <p class="testimonial-text">
-                    "Profissionalismo impecável! Entregaram o projeto antes do prazo e o resultado 
-                    superou todas as expectativas. Recomendo de olhos fechados."
-                </p>
-                <div class="testimonial-author">
-                    <div class="author-avatar">CS</div>
-                    <div class="author-info">
-                        <h4>Carlos Silva</h4>
-                        <p>Diretor, Tech Solutions</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="testimonial-card reveal">
-                <div class="testimonial-stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                </div>
-                <p class="testimonial-text">
-                    "Minha landing page de cursos teve uma taxa de conversão de 15%! 
-                    A equipe entendeu perfeitamente minha necessidade e entregou algo incrível."
-                </p>
-                <div class="testimonial-author">
-                    <div class="author-avatar">PL</div>
-                    <div class="author-info">
-                        <h4>Prof. Lucas</h4>
-                        <p>Educador Online</p>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
@@ -1839,9 +1502,7 @@
         <div class="section-header reveal">
             <span class="section-tag">Contato</span>
             <h2 class="section-title">Vamos Começar seu<br>Projeto?</h2>
-            <p class="section-subtitle">Preencha o formulário abaixo e retornaremos em até 24 horas</p>
         </div>
-
         <div class="contact-container reveal">
             <form class="contact-form" id="form-contato" onsubmit="handleContact(event)">
                 <div class="form-row">
@@ -1854,7 +1515,6 @@
                         <input type="email" id="email" name="email" required placeholder="seu@email.com">
                     </div>
                 </div>
-                
                 <div class="form-row">
                     <div class="form-group">
                         <label for="phone">WhatsApp</label>
@@ -1867,22 +1527,16 @@
                             <option value="Site Institucional">Site Institucional</option>
                             <option value="Landing Page">Landing Page</option>
                             <option value="E-commerce">E-commerce</option>
-                            <option value="Aplicativo Web">Aplicativo Web</option>
-                            <option value="Identidade Visual">Identidade Visual</option>
-                            <option value="Marketing Digital">Marketing Digital</option>
                             <option value="Outro">Outro</option>
                         </select>
                     </div>
                 </div>
-
                 <div class="form-group">
                     <label for="message">Conte-nos sobre seu projeto *</label>
                     <textarea id="message" name="descricao" required placeholder="Descreva o que você precisa..."></textarea>
                 </div>
-
                 <button type="submit" class="submit-btn" id="btn-submit">
-                    <i class="fas fa-paper-plane"></i>
-                    Enviar Mensagem
+                    <i class="fas fa-paper-plane"></i> Enviar Mensagem
                 </button>
             </form>
         </div>
@@ -1892,62 +1546,33 @@
         <div class="footer-content">
             <div class="footer-brand">
                 <div class="footer-logo">
-                    <img src="https://i.postimg.cc/vHNm4G9v/IMG_20260317_WA0001_2.jpg" alt="NexSite Digital" style="height: 40px; width: auto; max-width: 150px; display: block; margin-bottom: 15px;">
+                    <img src="https://i.postimg.cc/vHNm4G9v/IMG_20260317_WA0001_2.jpg" alt="NexSite Digital" style="height: 40px;">
                 </div>
-                <p class="footer-description">
-                    Transformamos negócios através de soluções digitais inovadoras. 
-                    Sua presença online de alta performance começa aqui.
-                </p>
+                <p class="footer-description">Transformamos negócios através de soluções digitais inovadoras.</p>
                 <div class="social-links">
-                    <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
-                    <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
                 </div>
             </div>
-
-            <div class="footer-column">
-                <h4>Links Rápidos</h4>
-                <ul class="footer-links">
-                    <li><a href="#inicio"><i class="fas fa-chevron-right"></i> Início</a></li>
-                    <li><a href="#servicos"><i class="fas fa-chevron-right"></i> Serviços</a></li>
-                    <li><a href="#portfolio"><i class="fas fa-chevron-right"></i> Portfólio</a></li>
-                    <li><a href="#precos"><i class="fas fa-chevron-right"></i> Preços</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-column">
-                <h4>Serviços</h4>
-                <ul class="footer-links">
-                    <li><a href="#"><i class="fas fa-chevron-right"></i> Sites Institucionais</a></li>
-                    <li><a href="#"><i class="fas fa-chevron-right"></i> Landing Pages</a></li>
-                    <li><a href="#"><i class="fas fa-chevron-right"></i> E-commerce</a></li>
-                    <li><a href="#"><i class="fas fa-chevron-right"></i> Marketing Digital</a></li>
-                </ul>
-            </div>
-
             <div class="footer-column">
                 <h4>Contato</h4>
                 <ul class="footer-links">
                     <li><a href="mailto:nexsitedigitalpatos@gmail.com"><i class="fas fa-envelope"></i> nexsitedigitalpatos@gmail.com</a></li>
                     <li><a href="tel:+558398015278"><i class="fas fa-phone"></i> +55 83 9801-5278</a></li>
-                    <li><a href="#"><i class="fas fa-map-marker-alt"></i> Patos, PB - Brasil</a></li>
                 </ul>
             </div>
         </div>
-
         <div class="footer-bottom">
-            <p>&copy; 2026 NexSite Digital. Todos os direitos reservados. | Patos-PB</p>
+            <p>&copy; 2026 NexSite Digital. Todos os direitos reservados.</p>
         </div>
     </footer>
 
     <div class="modal" id="modal">
         <div class="modal-content">
-            <button class="modal-close" onclick="closeModal()">
-                <i class="fas fa-times"></i>
-            </button>
+            <button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>
             <h2 id="modal-title">Solicitar Orçamento</h2>
-            <p id="modal-desc">Preencha seus dados e entraremos em contato em breve.</p>
+            <p id="modal-desc">Preencha seus dados e entraremos em contato.</p>
             <form id="modal-form" onsubmit="handleModalSubmit(event)">
                 <div class="form-group">
                     <label>Nome *</label>
@@ -1962,67 +1587,35 @@
                     <input type="tel" name="telefone" placeholder="(00) 00000-0000">
                 </div>
                 <input type="hidden" name="tipoProjeto" id="modal-plano">
-                <input type="hidden" name="descricao" value="Interesse pelo plano contratado via botão de preço">
+                <input type="hidden" name="descricao" value="Interesse pelo plano via site">
                 <button type="submit" class="submit-btn" style="width: 100%;">
-                    <i class="fas fa-paper-plane"></i>
-                    Enviar Solicitação
+                    <i class="fas fa-paper-plane"></i> Enviar Solicitação
                 </button>
             </form>
         </div>
     </div>
 
     <div class="toast" id="toast">
-        <div class="toast-icon">
-            <i class="fas fa-check"></i>
-        </div>
+        <div class="toast-icon"><i class="fas fa-check"></i></div>
         <div class="toast-message">Mensagem enviada com sucesso!</div>
     </div>
 
     <a href="https://wa.me/+558398015278" target="_blank" style="
-        position: fixed;
-        bottom: 30px;
-        right: 30px;
-        width: 60px;
-        height: 60px;
-        background: #25d366;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-        font-size: 1.8rem;
+        position: fixed; bottom: 30px; right: 30px;
+        width: 60px; height: 60px; background: #25d366;
+        border-radius: 50%; display: flex; align-items: center;
+        justify-content: center; color: white; font-size: 1.8rem;
         box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
-        z-index: 999;
-        transition: all 0.3s ease;
-        text-decoration: none;
+        z-index: 999; transition: all 0.3s ease; text-decoration: none;
     " onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
         <i class="fab fa-whatsapp"></i>
     </a>
 
     <script>
-        // DEBUG - Mostrar status do Firebase
+        // Loading
         window.addEventListener('load', () => {
             setTimeout(() => {
                 document.getElementById('loader').classList.add('hidden');
-                
-                // Verificar se Firebase inicializou
-                const debugPanel = document.getElementById('debug-panel');
-                const debugMsg = document.getElementById('debug-msg');
-                
-                if (window.firebaseInitialized) {
-                    debugMsg.innerHTML = '✅ Firebase OK<br>Pronto para enviar leads';
-                    debugPanel.style.background = 'rgba(34, 197, 94, 0.9)';
-                } else {
-                    debugMsg.innerHTML = '❌ Firebase falhou<br>Verifique console (F12)';
-                    debugPanel.style.background = 'rgba(239, 68, 68, 0.9)';
-                }
-                debugPanel.classList.add('show');
-                
-                // Esconder debug após 5 segundos
-                setTimeout(() => {
-                    debugPanel.classList.remove('show');
-                }, 5000);
-                
             }, 1500);
         });
 
@@ -2049,14 +1642,12 @@
         function drawMatrix() {
             ctx.fillStyle = 'rgba(3, 7, 18, 0.05)';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
-            
             ctx.fillStyle = '#00f2fe';
             ctx.font = fontSize + 'px monospace';
             
             for (let i = 0; i < drops.length; i++) {
                 const text = chars[Math.floor(Math.random() * chars.length)];
                 ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-                
                 if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
                     drops[i] = 0;
                 }
@@ -2073,7 +1664,7 @@
             }
         });
 
-        // Navbar Scroll Effect
+        // Navbar
         window.addEventListener('scroll', () => {
             const navbar = document.getElementById('navbar');
             if (window.scrollY > 50) {
@@ -2083,7 +1674,7 @@
             }
         });
 
-        // MENU MOBILE
+        // Mobile Menu
         function toggleMobileMenu() {
             const btn = document.getElementById('mobile-menu-btn');
             const nav = document.getElementById('mobile-nav');
@@ -2092,24 +1683,19 @@
             btn.classList.toggle('active');
             nav.classList.toggle('active');
             overlay.classList.toggle('active');
-            
             document.body.style.overflow = nav.classList.contains('active') ? 'hidden' : '';
         }
 
         window.addEventListener('resize', () => {
             if (window.innerWidth > 968) {
-                const btn = document.getElementById('mobile-menu-btn');
-                const nav = document.getElementById('mobile-nav');
-                const overlay = document.getElementById('mobile-nav-overlay');
-                
-                btn.classList.remove('active');
-                nav.classList.remove('active');
-                overlay.classList.remove('active');
+                document.getElementById('mobile-menu-btn').classList.remove('active');
+                document.getElementById('mobile-nav').classList.remove('active');
+                document.getElementById('mobile-nav-overlay').classList.remove('active');
                 document.body.style.overflow = '';
             }
         });
 
-        // Scroll Reveal Animation
+        // Scroll Reveal
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
@@ -2119,7 +1705,6 @@
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('active');
-                    
                     if (entry.target.classList.contains('stat-number')) {
                         animateCounter(entry.target);
                     }
@@ -2172,11 +1757,10 @@
             });
         }
 
-        // Modal Functions
+        // Modal
         function openModal(plan) {
             const modal = document.getElementById('modal');
             const title = document.getElementById('modal-title');
-            const desc = document.getElementById('modal-desc');
             const planoInput = document.getElementById('modal-plano');
             
             const planNames = {
@@ -2186,9 +1770,7 @@
             };
             
             title.textContent = `Solicitar ${planNames[plan]}`;
-            desc.textContent = 'Preencha seus dados e nossa equipe entrará em contato em até 2 horas.';
             planoInput.value = planNames[plan];
-            
             modal.classList.add('active');
         }
 
@@ -2196,12 +1778,63 @@
             document.getElementById('modal').classList.remove('active');
         }
 
-        // ENVIO PARA FIREBASE - FORMULÁRIO MODAL (PREÇOS)
+        // CONFIGURAÇÕES DE NOTIFICAÇÃO
+        const CONFIG = {
+            emailDestino: 'nexsitedigitalpatos@gmail.com',
+            whatsappDestino: '558398015278',
+            nomeEmpresa: 'NexSite Digital'
+        };
+
+        // Função para enviar e-mail via EmailJS (serviço gratuito)
+        async function enviarEmailNotificacao(dados) {
+            // Template de e-mail simples usando mailto como fallback
+            const assunto = encodeURIComponent(`Novo Lead - ${dados.tipoProjeto} - ${dados.nome}`);
+            const corpo = encodeURIComponent(`
+NOVO CONTATO RECEBIDO
+
+Nome: ${dados.nome}
+E-mail: ${dados.email}
+Telefone: ${dados.telefone || 'Não informado'}
+Serviço: ${dados.tipoProjeto}
+
+Mensagem:
+${dados.descricao}
+
+---
+Recebido em: ${new Date().toLocaleString('pt-BR')}
+Origem: ${dados.origem}
+            `);
+            
+            // Abrir cliente de e-mail
+            window.open(`mailto:${CONFIG.emailDestino}?subject=${assunto}&body=${corpo}`, '_blank');
+        }
+
+        // Função para enviar WhatsApp
+        function enviarWhatsAppNotificacao(dados) {
+            const mensagem = encodeURIComponent(`
+*🚨 NOVO LEAD - ${CONFIG.nomeEmpresa}*
+
+*Nome:* ${dados.nome}
+*E-mail:* ${dados.email}
+*Telefone:* ${dados.telefone || 'Não informado'}
+*Serviço:* ${dados.tipoProjeto}
+
+*Mensagem:*
+${dados.descricao}
+
+*Origem:* ${dados.origem}
+*Data:* ${new Date().toLocaleString('pt-BR')}
+            `);
+            
+            window.open(`https://wa.me/${CONFIG.whatsappDestino}?text=${mensagem}`, '_blank');
+        }
+
+        // ENVIO MODAL (PREÇOS)
         async function handleModalSubmit(e) {
             e.preventDefault();
             
             if (!window.firebaseInitialized) {
-                showToast('Erro: Firebase não inicializado. Verifique sua conexão.', 'error');
+                showToast('Erro: Firebase não inicializado.', 'error');
                 return;
             }
             
@@ -2220,52 +1853,41 @@
                 descricao: formData.get('descricao'),
                 status: 'novo',
                 origem: 'modal_precos',
+                notificado: false,
                 data: window.serverTimestamp()
             };
             
-            console.log('Enviando dados:', data);
-            
             try {
+                // 1. Salvar no Firebase
                 const docRef = await window.addDoc(window.collection(window.db, 'leads'), data);
-                console.log('Documento criado com ID:', docRef.id);
+                console.log('Salvo no Firebase:', docRef.id);
+                
+                // 2. Enviar WhatsApp
+                enviarWhatsAppNotificacao(data);
+                
+                // 3. Preparar e-mail (abre em nova aba)
+                setTimeout(() => {
+                    enviarEmailNotificacao(data);
+                }, 1000);
                 
                 closeModal();
-                showToast('Solicitação enviada! Entraremos em contato em breve.', 'success');
+                showToast('Solicitação enviada! Verifique seu WhatsApp.', 'success');
                 e.target.reset();
                 
-                setTimeout(() => {
-                    const msg = encodeURIComponent(`Olá! Vi o plano ${data.tipoProjeto} no site e gostaria de mais informações. Meu nome é ${data.nome}.`);
-                    window.open(`https://wa.me/+558398015278?text=${msg}`, '_blank');
-                }, 2000);
-                
             } catch (error) {
-                console.error('Erro completo:', error);
-                console.error('Código:', error.code);
-                console.error('Mensagem:', error.message);
-                
-                let msgErro = 'Erro ao enviar. ';
-                if (error.code === 'permission-denied') {
-                    msgErro += 'Permissão negada. Verifique as regras do Firestore.';
-                } else if (error.code === 'unauthenticated') {
-                    msgErro += 'Não autenticado.';
-                } else if (error.code === 'invalid-argument') {
-                    msgErro += 'Dados inválidos.';
-                } else {
-                    msgErro += error.message;
-                }
-                
-                showToast(msgErro, 'error');
+                console.error('Erro:', error);
+                showToast('Erro ao enviar: ' + error.message, 'error');
                 btn.disabled = false;
                 btn.innerHTML = originalText;
             }
         }
 
-        // ENVIO PARA FIREBASE - FORMULÁRIO DE CONTATO
+        // ENVIO FORMULÁRIO CONTATO
         async function handleContact(e) {
             e.preventDefault();
             
             if (!window.firebaseInitialized) {
-                showToast('Erro: Firebase não inicializado. Verifique sua conexão.', 'error');
+                showToast('Erro: Firebase não inicializado.', 'error');
                 return;
             }
             
@@ -2284,41 +1906,36 @@
                 descricao: formData.get('descricao'),
                 status: 'novo',
                 origem: 'formulario_contato',
+                notificado: false,
                 data: window.serverTimestamp()
             };
             
-            console.log('Enviando dados:', data);
-            
             try {
+                // 1. Salvar no Firebase
                 const docRef = await window.addDoc(window.collection(window.db, 'leads'), data);
-                console.log('Documento criado com ID:', docRef.id);
+                console.log('Salvo no Firebase:', docRef.id);
                 
-                showToast('Mensagem enviada com sucesso! Entraremos em contato em breve.', 'success');
+                // 2. Enviar WhatsApp
+                enviarWhatsAppNotificacao(data);
+                
+                // 3. Preparar e-mail
+                setTimeout(() => {
+                    enviarEmailNotificacao(data);
+                }, 1000);
+                
+                showToast('Mensagem enviada! Verifique seu WhatsApp.', 'success');
                 e.target.reset();
+                
             } catch (error) {
-                console.error('Erro completo:', error);
-                console.error('Código:', error.code);
-                console.error('Mensagem:', error.message);
-                
-                let msgErro = 'Erro ao enviar. ';
-                if (error.code === 'permission-denied') {
-                    msgErro += 'Permissão negada. Verifique as regras do Firestore.';
-                } else if (error.code === 'unauthenticated') {
-                    msgErro += 'Não autenticado.';
-                } else if (error.code === 'invalid-argument') {
-                    msgErro += 'Dados inválidos.';
-                } else {
-                    msgErro += error.message;
-                }
-                
-                showToast(msgErro, 'error');
+                console.error('Erro:', error);
+                showToast('Erro ao enviar: ' + error.message, 'error');
             } finally {
                 btn.disabled = false;
                 btn.innerHTML = originalText;
             }
         }
 
-        // Toast Notification
+        // Toast
         function showToast(message, type = 'success') {
             const toast = document.getElementById('toast');
             const icon = toast.querySelector('.toast-icon i');
@@ -2337,30 +1954,22 @@
             }
             
             toast.classList.add('show');
-            
-            setTimeout(() => {
-                toast.classList.remove('show');
-            }, 4000);
+            setTimeout(() => toast.classList.remove('show'), 4000);
         }
 
         // Close modal on outside click
         window.onclick = function(event) {
             const modal = document.getElementById('modal');
-            if (event.target === modal) {
-                closeModal();
-            }
+            if (event.target === modal) closeModal();
         }
 
-        // Smooth scroll for anchor links
+        // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
             });
         });
