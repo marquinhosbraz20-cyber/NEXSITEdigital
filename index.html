@@ -2336,11 +2336,25 @@ const db = firebase.firestore();
             switchTab('dashboard');
         }
 
+    // 1. FECHA A FUNÇÃO QUE ESTAVA ABERTA
+    function toggleMobileMenu() {
+        showToast('Menu mobile em desenvolvimento', 'success');
+    }
+
+    // 2. TIRA A TELA DE CARREGAMENTO (FAZ O SITE APARECER)
+    window.onload = function() {
+        const loader = document.getElementById('loader');
+        if (loader) {
+            loader.classList.add('hidden');
+        }
+    };
+</script>
+
 <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
 
 <script>
-    // Configura o acesso ao banco NexSite
+    // 4. CONFIGURAÇÃO FINAL DO BANCO DE DADOS
     const firebaseConfig = {
         apiKey: "AIzaSyBsFGZB3qGhQtCDN_mR_eLSC3...", 
         authDomain: "nexsiteadmin.firebaseapp.com",
@@ -2350,23 +2364,10 @@ const db = firebase.firestore();
         appId: "1:401939346793:web:b4b1c3d8858..."
     };
 
-    // Inicializa o Firebase
     if (!firebase.apps.length) {
         firebase.initializeApp(firebaseConfig);
     }
     var db = firebase.firestore();
-
-    // Fecha a função do menu e ativa o loader
-    function toggleMobileMenu() {
-        showToast('Menu mobile em desenvolvimento', 'success');
-    }
-
-    window.addEventListener('load', () => {
-        const loader = document.getElementById('loader');
-        if (loader) {
-            loader.classList.add('hidden');
-        }
-    });
 </script>
 </body>
 </html>
