@@ -2134,7 +2134,7 @@
         if(nav) nav.classList.toggle('active');
     }
 
-    // --- COMANDO PARA O SITE ABRIR (LOADER) ---
+    // --- COMANDO PARA O SITE ABRIR ---
     function liberarSite() {
         const loader = document.getElementById('loader');
         if (loader) {
@@ -2142,8 +2142,6 @@
             loader.classList.add('hidden');
         }
     }
-
-    // Tenta abrir ao carregar e força após 3 segundos como garantia
     window.addEventListener('load', liberarSite);
     setTimeout(liberarSite, 3000); 
 </script>
