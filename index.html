@@ -2128,21 +2128,30 @@
         if (loader) {
             loader.style.display = 'none';
             loader.classList.add('hidden');
+            // --- FUNÇÕES DE INTERFACE ---
+    function toggleMobileMenu() {
+        const nav = document.querySelector('.nav-links');
+        if(nav) nav.classList.toggle('active');
+    }
+
+    // --- COMANDO PARA O SITE ABRIR (LOADER) ---
+    function liberarSite() {
+        const loader = document.getElementById('loader');
+        if (loader) {
+            loader.style.display = 'none';
+            loader.classList.add('hidden');
         }
     }
 
-    // Tenta abrir o site de todas as formas possíveis
-    window.addEventListener('load', removerCarregamento);
-    document.addEventListener('DOMContentLoaded', removerCarregamento);
-    // Se nada funcionar, abre à força em 3 segundos
-    setTimeout(removerCarregamento, 3000);
+    // Tenta abrir ao carregar e força após 3 segundos como garantia
+    window.addEventListener('load', liberarSite);
+    setTimeout(liberarSite, 3000); 
 </script>
 
 <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
 
 <script>
-    // CONFIGURAÇÃO DO SEU BANCO DE DADOS
     const firebaseConfig = {
         apiKey: "AIzaSyBsFGZB3qGhQtCDN_mR_eLSC3...", 
         authDomain: "nexsiteadmin.firebaseapp.com",
@@ -2156,6 +2165,30 @@
         firebase.initializeApp(firebaseConfig);
     }
     var db = firebase.firestore();
+
+    // FUNÇÃO DO FORMULÁRIO DE CONTATO
+    async function handleContact(event) {
+        event.preventDefault();
+        const btn = event.target.querySelector('button');
+        try {
+            btn.disabled = true;
+            const formData = {
+                nome: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                whatsapp: document.getElementById('whatsapp').value,
+                servico: document.getElementById('service').value,
+                mensagem: document.getElementById('message').value,
+                data: new Date().toISOString()
+            };
+            await db.collection("leads").add(formData);
+            showToast('Sucesso!', 'success');
+            event.target.reset();
+        } catch (error) {
+            showToast('Erro ao enviar', 'error');
+        } finally {
+            btn.disabled = false;
+        }
+    }
 </script>
 </body>
 </html>
