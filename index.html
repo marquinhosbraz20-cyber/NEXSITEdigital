@@ -2340,9 +2340,15 @@ const db = firebase.firestore();
         // Mobile Menu Toggle
         function toggleMobileMenu() {
             // Implement mobile menu logic here
+            // FAZ O SITE APARECER (Remove a tela de carregamento)
+window.addEventListener('load', () => {
+    const loader = document.getElementById('loader');
+    if (loader) {
+        loader.classList.add('hidden');
+    }
+});
+            
             
 </script>
-    
-    
 </body>
 </html>
