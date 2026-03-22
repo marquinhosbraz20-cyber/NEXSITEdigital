@@ -2133,10 +2133,55 @@
         }
 
         // Contact Form
-        function handleContact(e) {
-            e.preventDefault();
-            showToast('Mensagem enviada com sucesso! Entraremos em contato em breve.', 'success');
-            e.target.reset();
+        
+            async function handleContact(event) {
+    event.preventDefault(); // Impede a página de recarregar
+    
+    const form = event.target;
+    const btn = form.querySelector('.submit-btn');
+    const originalText = btn.innerHTML;
+    
+    // Captura o que o cliente digitou
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData);
+    
+    // Mostra que está enviando
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+    btn.disabled = true;
+
+    try {
+        // PARTE 1: Envia para o seu e-mail
+        const emailResponse = await fetch("https://api.web3forms.com/submit", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data)
+        });
+
+        // PARTE 2: Salva no seu Painel Admin (Firebase)
+        // O comando 'db.collection' cria a lista que você vê no seu print
+        await db.collection("leads").add({
+            cliente: data.name,
+            email: data.email,
+            whatsapp: data.phone,
+            projeto: data.service,
+            mensagem: data.message,
+            data_envio: new Date().toLocaleString('pt-BR')
+        });
+
+        if (emailResponse.ok) {
+            alert("Sucesso! O contato foi salvo no seu painel e enviado ao seu e-mail.");
+            form.reset();
+        }
+
+    } catch (error) {
+        console.error("Erro:", error);
+        alert("Houve um erro. Verifique se o Firebase está ativo.");
+    } finally {
+        btn.innerHTML = originalText;
+        btn.disabled = false;
+    }
+            }
+            
         }
 
         // Toast Notification
