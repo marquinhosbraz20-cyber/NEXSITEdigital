@@ -2338,17 +2338,22 @@ const db = firebase.firestore();
         });
 
         // Mobile Menu Toggle
-        function toggleMobileMenu() {
-            // Implement mobile menu logic here
-            // FAZ O SITE APARECER (Remove a tela de carregamento)
-window.addEventListener('load', () => {
-    const loader = document.getElementById('loader');
-    if (loader) {
-        loader.classList.add('hidden');
-    }
-});
-            
-            
+            function toggleMobileMenu() {
+        // Implement mobile menu logic here
+        showToast('Menu mobile em desenvolvimento', 'success');
+    } // <--- ESTA CHAVE ESTAVA FALTANDO!
+
+    // FAZ O SITE APARECER
+    window.addEventListener('load', () => {
+        const loader = document.getElementById('loader');
+        if (loader) {
+            loader.classList.add('hidden');
+        }
+    });
 </script>
+
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+
 </body>
 </html>
