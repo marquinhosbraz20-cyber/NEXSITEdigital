@@ -103,6 +103,8 @@
         
         button.whatsapp { background: #25d366; }
         button.email { background: #ea4335; }
+        button.delete { background: #dc2626; }
+        button.delete:hover { box-shadow: 0 10px 30px rgba(220, 38, 38, 0.3); }
         
         .error-msg {
             margin-top: 15px;
@@ -129,15 +131,18 @@
             flex-direction: column;
         }
         
-        .sidebar h3 {
-            font-size: 24px;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .sidebar .logo-container {
             margin-bottom: 30px;
+            text-align: center;
         }
         
-        .sidebar .user-info {
+        .sidebar .logo-container img {
+            max-width: 180px;
+            height: auto;
+            filter: brightness(1.1);
+        }
+        
+        .sidebar .admin-info {
             color: var(--primary);
             font-weight: 600;
             margin-bottom: 10px;
@@ -147,6 +152,21 @@
             border: 1px solid var(--border);
             font-size: 13px;
             word-break: break-all;
+        }
+        
+        .sidebar .admin-info .admin-label {
+            font-size: 11px;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+            display: block;
+        }
+        
+        .sidebar .admin-info .admin-name {
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 14px;
         }
         
         .sidebar .menu { flex: 1; margin-top: 20px; }
@@ -201,7 +221,10 @@
             margin-bottom: 30px;
         }
         
-        .header h1 { font-size: 32px; font-weight: 800; }
+        .header .logo-header {
+            height: 50px;
+            width: auto;
+        }
         
         .header .stats { display: flex; gap: 20px; }
         
@@ -230,6 +253,7 @@
             gap: 15px;
             margin-bottom: 20px;
             flex-wrap: wrap;
+            align-items: center;
         }
         
         .filters select {
@@ -349,6 +373,67 @@
         .toast h4 { color: var(--primary); margin-bottom: 5px; }
         .toast p { font-size: 13px; color: var(--text-dim); }
         
+        /* Modal de Confirmação */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            backdrop-filter: blur(5px);
+        }
+        
+        .modal-overlay.show { display: flex; }
+        
+        .modal {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            padding: 30px;
+            border-radius: 20px;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+        }
+        
+        .modal h3 {
+            color: var(--danger);
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+        
+        .modal p {
+            color: var(--text-dim);
+            margin-bottom: 25px;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        
+        .modal-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+        
+        .modal-buttons button {
+            width: auto;
+            padding: 12px 24px;
+            margin-top: 0;
+        }
+        
+        .modal-buttons .btn-cancel {
+            background: transparent;
+            border: 1px solid var(--border);
+        }
+        
+        .modal-buttons .btn-confirm {
+            background: var(--danger);
+        }
+        
         @keyframes slideIn {
             from { transform: translateX(400px); opacity: 0; }
             to { transform: translateX(0); opacity: 1; }
@@ -368,6 +453,7 @@
             .main { padding: 20px; }
             .header { flex-direction: column; gap: 20px; align-items: flex-start; }
             .header .stats { width: 100%; }
+            .header .logo-header { height: 40px; }
             table { font-size: 12px; }
             th, td { padding: 10px 8px; }
             .acoes { flex-direction: column; }
@@ -392,8 +478,14 @@
     <div id="admin-dashboard" class="hidden">
         <div class="wrapper">
             <aside class="sidebar">
-                <h3><i class="fas fa-cube"></i> NEXSITE</h3>
-                <div class="user-info" id="user-display">Carregando...</div>
+                <div class="logo-container">
+                    <img src="https://kimi-web-img.moonshot.cn/img/qtrypzzcjebvfcihiynt.supabase.co/399b8e0435378092651aaa02d7a907fc4e58c2ea.png" alt="NexSite Digital">
+                </div>
+                
+                <div class="admin-info" id="admin-display">
+                    <span class="admin-label">Administrador</span>
+                    <div class="admin-name" id="admin-name">Carregando...</div>
+                </div>
                 
                 <div class="menu">
                     <div class="menu-item active" onclick="showSection('leads')">
@@ -417,7 +509,7 @@
             
             <main class="main">
                 <div class="header">
-                    <h1>Dashboard</h1>
+                    <img src="https://kimi-web-img.moonshot.cn/img/qtrypzzcjebvfcihiynt.supabase.co/399b8e0435378092651aaa02d7a907fc4e58c2ea.png" alt="NexSite Digital" class="logo-header">
                     <div class="stats">
                         <div class="card" style="padding: 15px 25px; margin: 0;">
                             <div style="font-size: 24px; font-weight: 800; color: var(--primary);" id="stat-hoje">0</div>
@@ -450,6 +542,9 @@
                         </select>
                         <button class="small" onclick="marcarTodosNotificados()" style="width: auto;">
                             <i class="fas fa-check-double"></i> Marcar todos lidos
+                        </button>
+                        <button class="small delete" onclick="confirmarLimparHistorico()" style="width: auto;">
+                            <i class="fas fa-trash-alt"></i> Limpar Histórico
                         </button>
                     </div>
                     
@@ -497,6 +592,20 @@
         </div>
     </div>
 
+    <!-- MODAL DE CONFIRMAÇÃO -->
+    <div id="modal-confirm" class="modal-overlay">
+        <div class="modal">
+            <h3><i class="fas fa-exclamation-triangle"></i> Atenção</h3>
+            <p>Tem certeza que deseja excluir todo o histórico de leads? Esta ação não pode ser desfeita.</p>
+            <div class="modal-buttons">
+                <button class="btn-cancel" onclick="fecharModal()">Cancelar</button>
+                <button class="btn-confirm" onclick="executarLimparHistorico()">
+                    <i class="fas fa-trash"></i> Sim, Excluir
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- TOAST NOTIFICAÇÃO -->
     <div id="toast" class="toast">
         <h4><i class="fas fa-bell"></i> Novo Lead!</h4>
@@ -507,7 +616,7 @@
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
         import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
-        import { getFirestore, collection, query, orderBy, onSnapshot, doc, updateDoc, where, getDocs } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+        import { getFirestore, collection, query, orderBy, onSnapshot, doc, updateDoc, where, getDocs, deleteDoc, writeBatch } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyBsFGZB3qGhQtCDN_mR_elSC3-QKVUmm1Q",
@@ -524,6 +633,14 @@
 
         let todosLeads = [];
         let unsubscribe = null;
+        let currentUser = null;
+
+        // Nomes dos administradores (você pode adicionar mais aqui)
+        const adminNames = {
+            "nexsitedigitalpatos@gmail.com": "Administrador Principal",
+            // Adicione mais e-mails e nomes aqui
+            // "outro@email.com": "Nome do Admin"
+        };
 
         // Mostrar erro
         const showError = (msg) => {
@@ -608,6 +725,59 @@
             alert(`${naoNotificados.length} leads marcados como lidos!`);
         };
 
+        // EXCLUIR LEAD INDIVIDUAL
+        window.excluirLead = async (id) => {
+            if (!confirm('Deseja excluir este lead permanentemente?')) return;
+            
+            try {
+                await deleteDoc(doc(db, 'leads', id));
+                mostrarToast('Lead excluído com sucesso!', 'success');
+            } catch (err) {
+                alert('Erro ao excluir: ' + err.message);
+            }
+        };
+
+        // CONFIRMAR LIMPAR HISTÓRICO
+        window.confirmarLimparHistorico = () => {
+            document.getElementById('modal-confirm').classList.add('show');
+        };
+
+        // FECHAR MODAL
+        window.fecharModal = () => {
+            document.getElementById('modal-confirm').classList.remove('show');
+        };
+
+        // EXECUTAR LIMPAR HISTÓRICO
+        window.executarLimparHistorico = async () => {
+            fecharModal();
+            
+            if (todosLeads.length === 0) {
+                alert('Não há leads para excluir.');
+                return;
+            }
+            
+            try {
+                const batch = writeBatch(db);
+                let count = 0;
+                
+                for (const lead of todosLeads) {
+                    const leadRef = doc(db, 'leads', lead.id);
+                    batch.delete(leadRef);
+                    count++;
+                    
+                    // Firebase permite máximo 500 operações por batch
+                    if (count % 450 === 0) {
+                        await batch.commit();
+                    }
+                }
+                
+                await batch.commit();
+                mostrarToast(`Histórico limpo! ${count} leads excluídos.`, 'success');
+            } catch (err) {
+                alert('Erro ao limpar histórico: ' + err.message);
+            }
+        };
+
         // ABRIR WHATSAPP
         window.abrirWhats = (telefone, nome) => {
             const num = telefone.replace(/\D/g, '');
@@ -672,6 +842,7 @@
                             ${lead.telefone ? `<button class="small whatsapp" onclick="abrirWhats('${lead.telefone}', '${lead.nome}')"><i class="fab fa-whatsapp"></i></button>` : ''}
                             <button class="small email" onclick="enviarEmail('${lead.email}', '${lead.nome}', '${lead.tipoProjeto}')"><i class="fas fa-envelope"></i></button>
                             ${!lead.notificado ? `<button class="small" onclick="marcarNotificado('${lead.id}')" style="background: var(--primary);"><i class="fas fa-check"></i></button>` : ''}
+                            <button class="small delete" onclick="excluirLead('${lead.id}')" title="Excluir lead"><i class="fas fa-trash"></i></button>
                         </div>
                     </td>
                 </tr>
@@ -728,9 +899,22 @@
         };
 
         // MOSTRAR TOAST
-        const mostrarToast = (nome) => {
+        const mostrarToast = (mensagem, tipo = 'novo') => {
             const toast = document.getElementById('toast');
-            document.getElementById('toast-msg').textContent = `${nome} acabou de solicitar um projeto!`;
+            const titulo = toast.querySelector('h4');
+            const msg = document.getElementById('toast-msg');
+            
+            if (tipo === 'success') {
+                titulo.innerHTML = '<i class="fas fa-check-circle"></i> Sucesso';
+                titulo.style.color = 'var(--success)';
+                toast.style.borderColor = 'var(--success)';
+            } else {
+                titulo.innerHTML = '<i class="fas fa-bell"></i> Novo Lead!';
+                titulo.style.color = 'var(--primary)';
+                toast.style.borderColor = 'var(--primary)';
+            }
+            
+            msg.textContent = mensagem;
             toast.classList.add('show');
             setTimeout(() => toast.classList.remove('show'), 5000);
         };
@@ -770,6 +954,11 @@
             }
         };
 
+        // OBTER NOME DO ADMIN
+        const getAdminName = (email) => {
+            return adminNames[email] || email.split('@')[0];
+        };
+
         // CARREGAR LEADS EM TEMPO REAL
         const carregarLeads = () => {
             const q = query(collection(db, 'leads'), orderBy('data', 'desc'));
@@ -786,9 +975,7 @@
                 const novosNaoNotificados = todosLeads.filter(l => !l.notificado);
                 if (leadsAnteriores > 0 && novosNaoNotificados.length > 0) {
                     const ultimo = novosNaoNotificados[0];
-                    mostrarToast(ultimo.nome);
-                    // Tocar som de notificação (opcional)
-                    // new Audio('notificacao.mp3').play().catch(e => {});
+                    mostrarToast(`${ultimo.nome} acabou de solicitar um projeto!`);
                 }
                 
                 filtrarLeads();
@@ -805,9 +992,14 @@
         // MONITOR DE SESSÃO
         onAuthStateChanged(auth, (user) => {
             if (user) {
+                currentUser = user;
                 document.getElementById('login-screen').classList.add('hidden');
                 document.getElementById('admin-dashboard').classList.remove('hidden');
-                document.getElementById('user-display').innerHTML = `<i class="fas fa-shield-alt"></i> ${user.email}`;
+                
+                // Exibir nome do administrador
+                const adminName = getAdminName(user.email);
+                document.getElementById('admin-name').textContent = adminName;
+                
                 carregarLeads();
                 carregarConfig();
             } else {
