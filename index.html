@@ -2125,236 +2125,46 @@
         function openModal(plan) {
             const modal = document.getElementById('modal');
             const title = document.getElementById('modal-title');
-            const desc = document.getElementById('modal-desc');
-            
-            const planNames = {
-                'starter': 'Plano Starter',
-                'business': 'Plano Business',
-                'ecommerce': 'Plano E-commerce'
+                // --- LÓGICA DE CONTATO ---
+    async function handleContact(event) {
+        event.preventDefault();
+        const btn = event.target.querySelector('button');
+        const originalText = btn.innerHTML;
+        try {
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+            btn.disabled = true;
+            const formData = {
+                nome: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                whatsapp: document.getElementById('whatsapp').value,
+                servico: document.getElementById('service').value,
+                mensagem: document.getElementById('message').value,
+                data: new Date().toISOString()
             };
-            
-            title.textContent = `Solicitar ${planNames[plan]}`;
-            desc.textContent = 'Preencha seus dados e nossa equipe entrará em contato em até 2 horas.';
-            
-            modal.classList.add('active');
+            await db.collection("leads").add(formData);
+            showToast('Sucesso! Recebemos sua mensagem.', 'success');
+            event.target.reset();
+        } catch (error) {
+            console.error(error);
+            showToast('Erro ao enviar. Tente o WhatsApp!', 'error');
+        } finally {
+            btn.innerHTML = originalText;
+            btn.disabled = false;
         }
-
-        function closeModal() {
-            document.getElementById('modal').classList.remove('active');
-        }
-
-        function handleModalSubmit(e) {
-            e.preventDefault();
-            closeModal();
-            showToast('Solicitação enviada! Redirecionando para WhatsApp...', 'success');
-            
-            setTimeout(() => {
-                window.open('https://wa.me/+558398015278?text=Olá! Gostaria de solicitar um orçamento.', '_blank');
-            }, 1500);
-        }
-        // --- CONFIGURAÇÃO DO FIREBASE (NEXSITE) ---
-const firebaseConfig = {
-  apiKey: "AIzaSyBsFGZB3qGhQtCDN_mR_eLSC3...", 
-  authDomain: "nexsiteadmin.firebaseapp.com",
-  projectId: "nexsiteadmin",
-  storageBucket: "nexsiteadmin.firebasestorage.app",
-  messagingSenderId: "401939346793",
-  appId: "1:401939346793:web:b4b1c3d8858..."
-};
-
-// Inicializa o Firebase antes das funções começarem
-if (!firebase.apps.length) {
-    firebase.initializeApp(firebaseConfig);
-}
-const db = firebase.firestore();
-
-// ------------------------------------------
-        
-
-        // Contact Form
-        
-            async function handleContact(event) {
-    event.preventDefault(); // Impede a página de recarregar
-    
-    const form = event.target;
-    const btn = form.querySelector('.submit-btn');
-    const originalText = btn.innerHTML;
-    
-    // Captura o que o cliente digitou
-    const formData = new FormData(form);
-    const data = Object.fromEntries(formData);
-    
-    // Mostra que está enviando
-    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
-    btn.disabled = true;
-
-    try {
-        // PARTE 1: Envia para o seu e-mail
-        const emailResponse = await fetch("https://api.web3forms.com/submit", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(data)
-        });
-
-        // PARTE 2: Salva no seu Painel Admin (Firebase)
-        // O comando 'db.collection' cria a lista que você vê no seu print
-        await db.collection("leads").add({
-            cliente: data.name,
-            email: data.email,
-            whatsapp: data.phone,
-            projeto: data.service,
-            mensagem: data.message,
-            data_envio: new Date().toLocaleString('pt-BR')
-        });
-
-        if (emailResponse.ok) {
-            alert("Sucesso! O contato foi salvo no seu painel e enviado ao seu e-mail.");
-            form.reset();
-        }
-
-    } catch (error) {
-        console.error("Erro:", error);
-        alert("Houve um erro. Verifique se o Firebase está ativo.");
-    } finally {
-        btn.innerHTML = originalText;
-        btn.disabled = false;
-    }
-            }//
-            
-        
-
-        // Toast Notification
-        function showToast(message, type = 'success') {
-            const toast = document.getElementById('toast');
-            toast.className = `toast ${type} show`;
-            toast.querySelector('.toast-message').textContent = message;
-            
-            setTimeout(() => {
-                toast.classList.remove('show');
-            }, 4000);
-        }
-
-        // Admin Panel (Hidden Access)
-        let adminPressTimer;
-        const adminTrigger = document.getElementById('admin-trigger');
-        
-        function startAdminAccess() {
-            adminPressTimer = setTimeout(() => {
-                const key = prompt('Digite a chave de acesso:');
-                if (key === 'nexadmin2026') {
-                    document.getElementById('master-panel').style.display = 'block';
-                    loadAdminData();
-                } else if (key !== null) {
-                    showToast('Chave incorreta!', 'error');
-                }
-            }, 3000);
-        }
-        
-        function cancelAdminAccess() {
-            clearTimeout(adminPressTimer);
-        }
-        
-        adminTrigger.addEventListener('mousedown', startAdminAccess);
-        adminTrigger.addEventListener('mouseup', cancelAdminAccess);
-        adminTrigger.addEventListener('touchstart', startAdminAccess);
-        adminTrigger.addEventListener('touchend', cancelAdminAccess);
-
-        function closeAdmin() {
-            document.getElementById('master-panel').style.display = 'none';
-        }
-
-        function switchTab(tab) {
-            document.querySelectorAll('.admin-nav-item').forEach(item => {
-                item.classList.remove('active');
-            });
-            event.target.closest('.admin-nav-item').classList.add('active');
-            
-            const view = document.getElementById('admin-view');
-            
-            if (tab === 'dashboard') {
-                view.innerHTML = `
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-bottom: 30px;">
-                        <div style="background: rgba(0,242,254,0.1); border: 1px solid var(--border); border-radius: 16px; padding: 25px;">
-                            <div style="color: var(--primary); font-size: 2rem; font-weight: 900;">12</div>
-                            <div style="color: var(--text-secondary);">Novos Leads</div>
-                        </div>
-                        <div style="background: rgba(171,39,255,0.1); border: 1px solid var(--border); border-radius: 16px; padding: 25px;">
-                            <div style="color: var(--accent); font-size: 2rem; font-weight: 900;">R$ 45K</div>
-                            <div style="color: var(--text-secondary);">Faturamento</div>
-                        </div>
-                        <div style="background: rgba(34,197,94,0.1); border: 1px solid var(--border); border-radius: 16px; padding: 25px;">
-                            <div style="color: var(--success); font-size: 2rem; font-weight: 900;">8</div>
-                            <div style="color: var(--text-secondary);">Projetos Ativos</div>
-                        </div>
-                    </div>
-                `;
-            } else if (tab === 'leads') {
-                view.innerHTML = `
-                    <div style="background: var(--glass); border: 1px solid var(--border); border-radius: 16px; padding: 25px;">
-                        <h3 style="margin-bottom: 20px;">Últimos Leads</h3>
-                        <div style="display: flex; flex-direction: column; gap: 15px;">
-                            <div style="padding: 15px; background: rgba(0,0,0,0.2); border-radius: 12px; display: flex; justify-content: space-between; align-items: center;">
-                                <div>
-                                    <div style="font-weight: 700;">João Silva</div>
-                                    <div style="font-size: 0.9rem; color: var(--text-muted);">joao@email.com - Plano Business</div>
-                                </div>
-                                <span style="padding: 5px 12px; background: var(--warning); border-radius: 20px; font-size: 0.8rem; font-weight: 600;">Novo</span>
-                            </div>
-                            <div style="padding: 15px; background: rgba(0,0,0,0.2); border-radius: 12px; display: flex; justify-content: space-between; align-items: center;">
-                                <div>
-                                    <div style="font-weight: 700;">Maria Santos</div>
-                                    <div style="font-size: 0.9rem; color: var(--text-muted);">maria@email.com - E-commerce</div>
-                                </div>
-                                <span style="padding: 5px 12px; background: var(--success); border-radius: 20px; font-size: 0.8rem; font-weight: 600;">Contatado</span>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            } else if (tab === 'settings') {
-                view.innerHTML = `
-                    <div style="background: var(--glass); border: 1px solid var(--border); border-radius: 16px; padding: 25px;">
-                        <h3 style="margin-bottom: 20px;">Configurações do Site</h3>
-                        <div style="display: flex; flex-direction: column; gap: 20px;">
-                            <div>
-                                <label style="display: block; margin-bottom: 8px; color: var(--text-secondary);">WhatsApp</label>
-                                <input type="text" value="+558398015278" style="width: 100%; padding: 12px; background: rgba(0,0,0,0.3); border: 1px solid var(--border); border-radius: 8px; color: white;">
-                            </div>
-                            <div>
-                                <label style="display: block; margin-bottom: 8px; color: var(--text-secondary);">E-mail de Contato</label>
-                                <input type="email" value="contato@nexsite.com" style="width: 100%; padding: 12px; background: rgba(0,0,0,0.3); border: 1px solid var(--border); border-radius: 8px; color: white;">
-                            </div>
-                            <button class="btn-primary" style="width: auto; align-self: flex-start;" onclick="showToast('Configurações salvas!', 'success')">
-                                <i class="fas fa-save"></i> Salvar Alterações
-                            </button>
-                        </div>
-                    </div>
-                `;
-            }
-        }
-
-        function loadAdminData() {
-            switchTab('dashboard');
-        }
-
-    // 1. FECHA A FUNÇÃO QUE ESTAVA ABERTA
-    function toggleMobileMenu() {
-        showToast('Menu mobile em desenvolvimento', 'success');
     }
 
-    // 2. TIRA A TELA DE CARREGAMENTO (FAZ O SITE APARECER)
-    window.onload = function() {
+    // --- COMANDO PARA O SITE ABRIR ---
+    window.addEventListener('load', () => {
         const loader = document.getElementById('loader');
-        if (loader) {
-            loader.classList.add('hidden');
-        }
-    };
+        if (loader) loader.classList.add('hidden');
+    });
 </script>
 
 <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
 
 <script>
-    // 4. CONFIGURAÇÃO FINAL DO BANCO DE DADOS
+    // CONFIGURAÇÃO DO BANCO
     const firebaseConfig = {
         apiKey: "AIzaSyBsFGZB3qGhQtCDN_mR_eLSC3...", 
         authDomain: "nexsiteadmin.firebaseapp.com",
@@ -2363,11 +2173,11 @@ const db = firebase.firestore();
         messagingSenderId: "401939346793",
         appId: "1:401939346793:web:b4b1c3d8858..."
     };
-
-    if (!firebase.apps.length) {
-        firebase.initializeApp(firebaseConfig);
-    }
+    if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
     var db = firebase.firestore();
 </script>
 </body>
 </html>
+
+            
+                        
