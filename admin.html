@@ -10,7 +10,7 @@
         :root {
             --primary: #00f2fe; --accent: #ab27ff; --darker: #020408; --dark: #0a0f1c;
             --glass: rgba(10, 15, 28, 0.8); --border: rgba(0, 242, 254, 0.2);
-            --text: #ffffff; --text-dim: #94a3b8; --success: #22c55e;
+            --text: #ffffff; --text-dim: #94a3b8; --success: #22c55e; --danger: #ef4444;
             --gradient: linear-gradient(135deg, var(--primary), var(--accent));
         }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
@@ -18,57 +18,278 @@
         .hidden { display: none !important; }
         
         /* LOGIN */
-        #login-screen { height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; }
-        .login-card { background: var(--glass); border: 1px solid var(--border); padding: 40px; border-radius: 24px; width: 100%; max-width: 400px; text-align: center; backdrop-filter: blur(20px); }
-        input { width: 100%; padding: 12px; border-radius: 8px; border: 1px solid var(--border); background: rgba(255,255,255,0.05); color: white; margin: 10px 0; }
-        button { width: 100%; padding: 14px; border: none; border-radius: 50px; background: var(--gradient); color: white; font-weight: 700; cursor: pointer; margin-top: 10px; }
+        #login-screen { 
+            height: 100vh; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            padding: 20px; 
+            background: radial-gradient(circle at 50% 50%, rgba(171, 39, 255, 0.1) 0%, transparent 50%); 
+        }
+        .login-card { 
+            background: var(--glass); 
+            border: 1px solid var(--border); 
+            padding: 40px; 
+            border-radius: 24px; 
+            width: 100%; 
+            max-width: 400px; 
+            text-align: center; 
+            backdrop-filter: blur(20px); 
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); 
+        }
+        .login-card h2 { font-size: 28px; margin-bottom: 10px; }
+        .login-card p.subtitle { color: var(--text-dim); margin-bottom: 30px; font-size: 14px; }
+        
+        input { 
+            width: 100%; 
+            padding: 14px 16px; 
+            border-radius: 12px; 
+            border: 1px solid var(--border); 
+            background: rgba(255,255,255,0.05); 
+            color: white; 
+            margin: 10px 0; 
+            font-size: 14px; 
+            transition: all 0.3s; 
+        }
+        input:focus { 
+            outline: none; 
+            border-color: var(--primary); 
+            box-shadow: 0 0 0 3px rgba(0, 242, 254, 0.1); 
+        }
+        
+        button { 
+            width: 100%; 
+            padding: 14px; 
+            border: none; 
+            border-radius: 50px; 
+            background: var(--gradient); 
+            color: white; 
+            font-weight: 700; 
+            cursor: pointer; 
+            margin-top: 15px; 
+            transition: transform 0.2s, box-shadow 0.2s; 
+            font-size: 14px; 
+            text-transform: uppercase; 
+            letter-spacing: 0.5px; 
+        }
+        button:hover { 
+            transform: translateY(-2px); 
+            box-shadow: 0 10px 30px rgba(0, 242, 254, 0.3); 
+        }
+        button:active { transform: translateY(0); }
+        button.danger { background: var(--danger); }
+        button.danger:hover { box-shadow: 0 10px 30px rgba(239, 68, 68, 0.3); }
+        
+        .error-msg { 
+            margin-top: 15px; 
+            padding: 12px; 
+            background: rgba(239, 68, 68, 0.1); 
+            border: 1px solid rgba(239, 68, 68, 0.3); 
+            border-radius: 8px; 
+            color: #fca5a5; 
+            font-size: 13px; 
+            display: none; 
+        }
+        .error-msg.show { display: block; }
         
         /* DASHBOARD */
         .wrapper { display: flex; min-height: 100vh; }
-        .sidebar { width: 280px; background: var(--dark); border-right: 1px solid var(--border); padding: 30px 20px; }
-        .main { flex: 1; padding: 40px; }
-        .card { background: var(--glass); padding: 25px; border-radius: 20px; border: 1px solid var(--border); margin-bottom: 20px; }
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-        th, td { text-align: left; padding: 15px; border-bottom: 1px solid rgba(255,255,255,0.05); }
-        .user-info { color: var(--primary); font-weight: 800; margin-bottom: 20px; display: block; }
+        .sidebar { 
+            width: 280px; 
+            background: var(--dark); 
+            border-right: 1px solid var(--border); 
+            padding: 30px 20px; 
+            display: flex; 
+            flex-direction: column; 
+        }
+        .sidebar h3 { 
+            font-size: 24px; 
+            background: var(--gradient); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+            margin-bottom: 30px; 
+        }
+        .sidebar .user-info { 
+            color: var(--primary); 
+            font-weight: 600; 
+            margin-bottom: 10px; 
+            padding: 15px; 
+            background: rgba(0, 242, 254, 0.05); 
+            border-radius: 12px; 
+            border: 1px solid var(--border); 
+            font-size: 13px; 
+            word-break: break-all; 
+        }
+        .sidebar .menu { flex: 1; margin-top: 20px; }
+        .sidebar .menu-item { 
+            padding: 12px 16px; 
+            border-radius: 10px; 
+            cursor: pointer; 
+            margin-bottom: 8px; 
+            transition: all 0.3s; 
+            color: var(--text-dim); 
+            font-size: 14px; 
+            display: flex; 
+            align-items: center; 
+            gap: 10px; 
+        }
+        .sidebar .menu-item:hover, .sidebar .menu-item.active { 
+            background: rgba(0, 242, 254, 0.1); 
+            color: var(--primary); 
+        }
+        
+        .main { flex: 1; padding: 40px; overflow-y: auto; }
+        .header { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            margin-bottom: 30px; 
+        }
+        .header h1 { font-size: 32px; font-weight: 800; }
+        .header .stats { display: flex; gap: 20px; }
+        
+        .card { 
+            background: var(--glass); 
+            padding: 25px; 
+            border-radius: 20px; 
+            border: 1px solid var(--border); 
+            margin-bottom: 20px; 
+            backdrop-filter: blur(10px); 
+        }
+        .card h3 { 
+            font-size: 18px; 
+            margin-bottom: 20px; 
+            color: var(--text); 
+            display: flex; 
+            align-items: center; 
+            gap: 10px; 
+        }
+        .card h3 i { color: var(--primary); }
+        
+        table { width: 100%; border-collapse: collapse; }
+        th { 
+            text-align: left; 
+            padding: 15px; 
+            color: var(--text-dim); 
+            font-weight: 600; 
+            font-size: 12px; 
+            text-transform: uppercase; 
+            letter-spacing: 0.5px; 
+            border-bottom: 1px solid var(--border); 
+        }
+        td { 
+            text-align: left; 
+            padding: 15px; 
+            border-bottom: 1px solid rgba(255,255,255,0.05); 
+            font-size: 14px; 
+        }
+        tr:hover { background: rgba(255,255,255,0.02); }
+        .badge { 
+            padding: 4px 12px; 
+            border-radius: 20px; 
+            font-size: 12px; 
+            font-weight: 600; 
+        }
+        .badge-pending { 
+            background: rgba(234, 179, 8, 0.1); 
+            color: #eab308; 
+            border: 1px solid rgba(234, 179, 8, 0.3); 
+        }
+        .badge-completed { 
+            background: rgba(34, 197, 94, 0.1); 
+            color: #22c55e; 
+            border: 1px solid rgba(34, 197, 94, 0.3); 
+        }
+        
+        .empty-state { 
+            text-align: center; 
+            padding: 60px 20px; 
+            color: var(--text-dim); 
+        }
+        .empty-state i { font-size: 48px; margin-bottom: 20px; opacity: 0.5; }
+        
+        /* Animações */
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .fade-in { animation: fadeIn 0.5s ease-out; }
     </style>
 </head>
 <body>
 
+    <!-- TELA DE LOGIN -->
     <div id="login-screen">
         <div class="login-card">
-            <h2 style="margin-bottom:20px">NexSite <span style="color:var(--primary)">Admin</span></h2>
-            <input type="email" id="email" placeholder="E-mail do Administrador">
-            <input type="password" id="pass" placeholder="Senha">
-            <button onclick="login()">ACESSAR SISTEMA</button>
-            <p id="msg" style="margin-top:15px; font-size:12px; color:var(--text-dim)"></p>
+            <h2>NexSite <span style="color:var(--primary)">Admin</span></h2>
+            <p class="subtitle">Painel de Controle Master</p>
+            <input type="email" id="email" placeholder="E-mail do Administrador" autocomplete="email">
+            <input type="password" id="pass" placeholder="Senha" autocomplete="current-password">
+            <button onclick="login()">Acessar Sistema</button>
+            <div id="msg" class="error-msg"></div>
         </div>
     </div>
 
+    <!-- DASHBOARD ADMIN -->
     <div id="admin-dashboard" class="hidden">
         <div class="wrapper">
             <aside class="sidebar">
-                <h3>NEXSITE</h3>
-                <span class="user-info" id="user-display">Carregando...</span>
-                <button onclick="logout()" style="background:#ef4444; font-size:12px">SAIR DO SISTEMA</button>
+                <h3><i class="fas fa-cube"></i> NEXSITE</h3>
+                <div class="user-info" id="user-display">Carregando...</div>
+                
+                <div class="menu">
+                    <div class="menu-item active">
+                        <i class="fas fa-users"></i> Leads
+                    </div>
+                    <div class="menu-item">
+                        <i class="fas fa-chart-line"></i> Analytics
+                    </div>
+                    <div class="menu-item">
+                        <i class="fas fa-cog"></i> Configurações
+                    </div>
+                </div>
+                
+                <button onclick="logout()" class="danger" style="margin-top: auto; font-size: 12px;">
+                    <i class="fas fa-sign-out-alt"></i> Sair do Sistema
+                </button>
             </aside>
+            
             <main class="main">
-                <div class="card">
-                    <h3>+ Cadastrar Novo Admin/Dev</h3>
-                    <input type="text" id="new-name" placeholder="Nome do Desenvolvedor">
-                    <input type="email" id="new-email" placeholder="E-mail">
-                    <input type="password" id="new-pass" placeholder="Senha">
-                    <button onclick="cadastrar()" style="background:var(--accent)">CRIAR CONTA</button>
+                <div class="header">
+                    <h1>Dashboard</h1>
+                    <div class="stats">
+                        <div class="card" style="padding: 15px 25px; margin: 0;">
+                            <div style="font-size: 24px; font-weight: 800; color: var(--primary);">0</div>
+                            <div style="font-size: 12px; color: var(--text-dim);">Leads Hoje</div>
+                        </div>
+                        <div class="card" style="padding: 15px 25px; margin: 0;">
+                            <div style="font-size: 24px; font-weight: 800; color: var(--accent);">0</div>
+                            <div style="font-size: 12px; color: var(--text-dim);">Total</div>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="card">
-                    <h3>Leads e Contatos</h3>
+                <!-- SEÇÃO DE LEADS -->
+                <div class="card fade-in">
+                    <h3><i class="fas fa-address-book"></i> Leads e Contatos</h3>
                     <table>
                         <thead>
-                            <tr><th>Cliente</th><th>Projeto</th><th>Ação</th></tr>
+                            <tr>
+                                <th>Cliente</th>
+                                <th>E-mail</th>
+                                <th>Projeto</th>
+                                <th>Status</th>
+                                <th>Data</th>
+                                <th>Ação</th>
+                            </tr>
                         </thead>
                         <tbody id="leads-body">
-                            <tr><td colspan="3">Aguardando novos contatos...</td></tr>
+                            <tr>
+                                <td colspan="6">
+                                    <div class="empty-state">
+                                        <i class="fas fa-inbox"></i>
+                                        <p>Aguardando novos contatos...</p>
+                                        <p style="font-size: 12px; margin-top: 10px;">Os leads aparecerão aqui quando clientes preencherem o formulário do site</p>
+                                    </div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -78,9 +299,9 @@
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+        import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
-        // Dados do seu Firebase (Preenchidos com base no seu print)
+        // Configuração Firebase
         const firebaseConfig = {
             apiKey: "AIzaSyBsFGZB3qGhQtCDN_mR_elSC3-QKVUmm1Q",
             authDomain: "nexsiteadmin.firebaseapp.com",
@@ -93,22 +314,26 @@
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
 
-        // LOGIN
-        window.login = () => {
-            const e = document.getElementById('email').value;
-            const s = document.getElementById('pass').value;
-            signInWithEmailAndPassword(auth, e, s).catch(err => alert("Erro: " + err.message));
+        // Mostrar erro
+        const showError = (msg) => {
+            const el = document.getElementById('msg');
+            el.textContent = msg;
+            el.classList.add('show');
+            setTimeout(() => el.classList.remove('show'), 5000);
         };
 
-        // CADASTRAR OUTRO DEV
-        window.cadastrar = () => {
-            const n = document.getElementById('new-name').value;
-            const e = document.getElementById('new-email').value;
-            const s = document.getElementById('new-pass').value;
-            createUserWithEmailAndPassword(auth, e, s).then((u) => {
-                updateProfile(u.user, { displayName: n });
-                alert("Dev " + n + " cadastrado!");
-            }).catch(err => alert(err.message));
+        // LOGIN
+        window.login = () => {
+            const e = document.getElementById('email').value.trim();
+            const s = document.getElementById('pass').value;
+            
+            if (!e || !s) {
+                showError("Preencha todos os campos");
+                return;
+            }
+            
+            signInWithEmailAndPassword(auth, e, s)
+                .catch(err => showError("Erro: " + err.message));
         };
 
         // MONITOR DE SESSÃO
@@ -116,15 +341,28 @@
             if (user) {
                 document.getElementById('login-screen').classList.add('hidden');
                 document.getElementById('admin-dashboard').classList.remove('hidden');
-                document.getElementById('user-display').innerText = "ADM: " + (user.displayName || user.email);
+                document.getElementById('user-display').innerHTML = `
+                    <i class="fas fa-shield-alt"></i> ${user.email}
+                `;
             } else {
                 document.getElementById('login-screen').classList.remove('hidden');
                 document.getElementById('admin-dashboard').classList.add('hidden');
+                // Limpar senha ao sair
+                document.getElementById('pass').value = '';
             }
         });
 
-        window.logout = () => signOut(auth);
+        // LOGOUT
+        window.logout = () => {
+            if(confirm("Deseja realmente sair do sistema?")) {
+                signOut(auth);
+            }
+        };
+
+        // ENTER para login
+        document.getElementById('pass')?.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') login();
+        });
     </script>
 </body>
-</html> 
-
+</html>
