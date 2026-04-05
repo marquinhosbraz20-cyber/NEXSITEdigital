@@ -2284,8 +2284,31 @@
      <script type="module">
     import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
      createChat({
-    webhookUrl: 'https://marquinhos.app.n8n.cloud/webhook/0a6267fd-7905-44c1-b220-43848e8fb064/chat'
+
+    webhookUrl: 'https://marquinhos.app.n8n.cloud/webhook/0a6267fd-7905-44c1-b220-43848e8fb064/chat',
+    title: 'NexSite Digital',
+    description: 'Assistente Virtual',
+    mode: 'embedded',
+    chatButton: {
+    backgroundColor: '#000000',
+     },
+    // ISSO AQUI FORÇA O PORTUGUÊS E TIRA O "HI THERE"
+    i18n: {
+    en: {
+      welcome: 'Olá! Como posso ajudar?',
+      chatButton: 'Conversar agora',
+      placeholder: 'Digite sua mensagem...',
+      inputTextPlaceholder: 'Escreva aqui...',
+      sendButtonTooltip: 'Enviar'
+    }
+    },
+    // ISSO AQUI SOBE O CHAT PARA NÃO TAMPAR O WHATSAPP
+    style: {
+    bottom: '120px',
+    right: '20px'
+    }
     });
+
     </script>
 
     </body>
