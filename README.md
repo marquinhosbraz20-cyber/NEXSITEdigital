@@ -2280,5 +2280,13 @@
             showToast('Menu mobile em desenvolvimento agradecemos pela sua compreensão', 'success');
         }
     </script>
-</body>
-</html>
+    <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
+     <script type="module">
+    import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+     createChat({
+    webhookUrl: 'https://marquinhos.app.n8n.cloud/webhook/0a6267fd-7905-44c1-b220-43848e8fb064/chat'
+    });
+    </script>
+
+    </body>
+    </html>
