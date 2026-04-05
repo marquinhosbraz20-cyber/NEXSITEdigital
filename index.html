@@ -1983,28 +1983,28 @@ ${dados.descricao}
         import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
           createChat({
   webhookUrl: 'https://marquinhos.app.n8n.cloud/webhook/0a6267fd-7905-44c1-b220-43848e8fb064/chat',
-  mode: 'embedded',
-  chatButton: 'Falar com a NexSite',
-  showWelcomeMessage: true,
-  // Isso aqui troca o "Hi there" pelo seu texto
   title: 'NexSite Digital',
   description: 'Assistente Virtual',
+  mode: 'embedded',
+  chatButton: {
+    backgroundColor: '#000000',
+  },
+  // ISSO AQUI FORÇA O PORTUGUÊS E TIRA O "HI THERE"
   i18n: {
     en: {
-      welcome: 'Olá!',
-      chatButton: 'Falar com a NexSite',
+      welcome: 'Olá! Como posso ajudar?',
+      chatButton: 'Conversar agora',
       placeholder: 'Digite sua mensagem...',
-      inputTextPlaceholder: 'Digite sua mensagem aqui...',
-      sendButtonTooltip: 'Enviar mensagem'
+      inputTextPlaceholder: 'Escreva aqui...',
+      sendButtonTooltip: 'Enviar'
     }
   },
-  // Isso aqui sobe o chat para não tampar o seu botão do WhatsApp
+  // ISSO AQUI SOBE O CHAT PARA NÃO TAMPAR O WHATSAPP
   style: {
-    bottom: '120px', 
-    backgroundColor: '#000000',
+    bottom: '120px',
+    right: '20px'
   }
 });
-        
     </script>
 </body>
 </html>
