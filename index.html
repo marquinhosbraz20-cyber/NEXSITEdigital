@@ -1977,6 +1977,21 @@ ${dados.descricao}
                 }
             });
         });
+        <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
+<script type="module">
+  import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+
+  createChat({
+    webhookUrl: 'https://marquinhos.app.n8n.cloud/webhook/A4zP',
+    webhookConfig: {
+      method: 'POST'
+    },
+    title: 'NexSite Digital',
+    subtitle: 'Assistente Inteligente',
+    mainColor: '#000000',
+    greeting: 'Olá! Sou o assistente da NexSite. Como posso ajudar sua empresa hoje?',
+    placeholder: 'Digite sua mensagem...',
+  });
     </script>
 </body>
 </html>
