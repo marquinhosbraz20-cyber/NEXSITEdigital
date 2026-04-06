@@ -1977,32 +1977,21 @@ ${dados.descricao}
             });
         });
     </script>
+<link href="https://marquinhos.app.n8n.cloud/css/chat.css" rel="stylesheet" />
+<script src="https://marquinhos.app.n8n.cloud/js/chat.js"></script>
 
-    <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
-    <script type="module">
-        import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
-          createChat({
-  webhookUrl: 'https://marquinhos.app.n8n.cloud/webhook/0a6267fd-7905-44c1-b220-43848e8fb064/chat',
-  title: 'NexSite Digital',
-  description: 'Assistente Virtual',
-  mode: 'embedded',
-  // ISSO AQUI OBRIGA O CHAT A FICAR EM PORTUGUÊS
-  i18n: {
-    en: {
-      welcome: 'Olá! Como posso ajudar? 👋',
-      chatButton: 'Falar com a NexSite',
-      placeholder: 'Digite sua mensagem...',
-      inputTextPlaceholder: 'Escreva aqui...',
-      sendButtonTooltip: 'Enviar'
-    }
-  },
-  // ISSO AQUI SOBE O CHAT PARA NÃO TAMPAR O WHATSAPP
-  style: {
-    bottom: '140px', 
-    right: '20px'
-  }
-});
-        
-    </script>
+<script>
+  createChat({
+    webhookUrl: 'https://marquinhos.app.n8n.cloud/webhook/0b6267fd-7305-44c1-b220-4384be8fb064/chat',
+    title: 'NexSite Digital',
+    description: 'Especialistas em Landing Pages e Automações',
+    mainColor: '#FFD700', // Dourado luxo
+    bubbleColor: '#000000', // Preto
+    welcomeMessage: 'Olá! Como a NexSite pode ajudar você hoje? 🚀',
+  });
+</script>
+    
+  
+    
 </body>
 </html>
