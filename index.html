@@ -1977,18 +1977,17 @@ ${dados.descricao}
             });
         });
     </script>
-<link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
-<script type="module">
-  import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
-
+<script>
   createChat({
     webhookUrl: 'https://marquinhos.app.n8n.cloud/webhook/3a689a89-c56f-4943-be70-2d9fc130588c/chat',
-    webhookConfig: {
-         method:  'POST'
-    },
-    ShowWelcomeMessage: true,
-      title: 'Assistente Nexsite Digital',
-    mainColor: '#00bfa5',
+    options: {
+      title: 'Suporte Automático Nexsite Digital',
+      subtitle: 'Serviços para o crescimento da sua empresa',
+      inputPlaceholder: 'Digite aqui...',
+      initialMessages: [
+        'Olá! Meu nome é Marquinhos, sou seu assistente virtual. Em que posso ajudar?'
+      ]
+    }
   });
 </script>
     
