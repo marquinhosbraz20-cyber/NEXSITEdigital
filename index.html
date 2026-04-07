@@ -2001,9 +2001,29 @@ ${dados.descricao}
   });
     
 </script>
+    <script type="module">
+  import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+
+  createChat({
+    webhookUrl: 'https://marquinhos.app.n8n.cloud/webhook/0b6207fd-7305-44c1-b220-43848e8fb064/chat',
+    showWelcomeScreen: true,
+    defaultLanguage: 'pt-BR',
+    title: 'NexAssistant',
+    subtitle: 'IA especialista em soluções digitais',
+    footerMessages: 'Powered by n8n',
+    i18n: {
+      en: {
+        title: 'NexAssistant',
+        subtitle: 'Como podemos ajudar seu negócio hoje?',
+        getStarted: 'Começar Conversa',
+        inputPlaceholder: 'Escreva sua dúvida...',
+      },
+    },
+  });
     
+</script>
     
-  
+
     
 </body>
 </html>
