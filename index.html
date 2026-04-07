@@ -1975,8 +1975,8 @@ ${dados.descricao}
                     target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
             });
-        });
-    </script>
+        });S
+<script src="https://marquinhos.app.n8n.cloud/webhook/3a689a89-c56f-4943-be70-2d9fc130588c/chat"></script>
 <script>
   createChat({
     webhookUrl: 'https://marquinhos.app.n8n.cloud/webhook/3a689a89-c56f-4943-be70-2d9fc130588c/chat',
@@ -1986,9 +1986,20 @@ ${dados.descricao}
       inputPlaceholder: 'Digite aqui...',
       initialMessages: [
         'Olá! Meu nome é Marquinhos, sou seu assistente virtual. Em que posso ajudar?'
-      ]
+      ],
+      backgroundColor: '#007bff', // Cor azul do botão/header
+      mainColor: '#007bff',        // Cor principal
     }
   });
+
+  // Ajuste para empurrar o chat para baixo (evitar cobrir o WhatsApp)
+  window.onload = function() {
+    const chatContainer = document.querySelector('#n8n-chat-container');
+    if (chatContainer) {
+       chatContainer.style.bottom = '20px'; // Ajuste esse número se precisar descer mais
+    }
+  };
+</script>
 </script>
     
 </body>
