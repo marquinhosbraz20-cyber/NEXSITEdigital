@@ -1978,25 +1978,18 @@ ${dados.descricao}
         });
     </script>
 <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
-
 <script type="module">
   import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
 
   createChat({
     webhookUrl: 'https://marquinhos.app.n8n.cloud/webhook-test/2ba79d0d-ec47-4e21-9f6f-32a5157c89c7',
-    showWelcomeScreen: true,
     title: 'NexAssistant',
-    subtitle: 'IA especialista em soluções digitais',
-    i18n: {
-      en: {
-        title: 'NexAssistant',
-        getStarted: 'Começar Conversa',
-        inputPlaceholder: 'Digite sua dúvida...',
-      }
-    }
+    subtitle: 'O assistente inteligente da NexSite',
+    mainColor: '#00bfa5',
+    welcomeMessage: 'Olá! Eu sou o Nathan. Como posso ajudar na sua presença digital hoje?',
+    buttonColor: '#00bfa5',
   });
 </script>
-    
     
 </body>
 </html>
