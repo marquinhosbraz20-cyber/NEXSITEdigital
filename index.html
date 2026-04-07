@@ -1983,11 +1983,12 @@ ${dados.descricao}
 
   createChat({
     webhookUrl: 'https://marquinhos.app.n8n.cloud/webhook-test/2ba79d0d-ec47-4e21-9f6f-32a5157c89c7',
-    title: 'NexAssistant',
-    subtitle: 'O assistente inteligente da NexSite',
+    webhookConfig: {
+         method:  'POST'
+    },
+    ShowWelcomeMessage: true,
+      title: 'NexAssistant',
     mainColor: '#00bfa5',
-    welcomeMessage: 'Olá! Eu sou o Nathan. Como posso ajudar na sua presença digital hoje?',
-    buttonColor: '#00bfa5',
   });
 </script>
     
