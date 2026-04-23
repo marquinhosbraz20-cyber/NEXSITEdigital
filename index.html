@@ -2034,7 +2034,7 @@ ${dados.descricao}
                 }, 1000);
                 
                 closeModal();
-                showToast('Solicitação enviada! Verifique seu WhatsApp.', 'success');
+                showToast('Solicitação enviada! em alguns instantes entraremos em contato em seu WhatsApp.', 'success');
                 e.target.reset();
                 
             } catch (error) {
@@ -2135,43 +2135,9 @@ ${dados.descricao}
                 }
             });
         });
-        </script>
-<link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
-<script src="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js" type="module"></script>
-
-<script type="module">
-  import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
-
-  createChat({
-    webhookUrl: 'https://marquinhos.app.n8n.cloud/webhook/3a689a89-c56f-4943-be70-2d9fc130588c/chat',
-    title: 'Suporte Automático Nexsite Digital',
-    subtitle: 'Serviços para o crescimento da sua empresa',
-    initialMessages: [
-      'Olá! Meu nome é Marquinhos, sou seu assistente virtual. Em que posso ajudar?'
-    ],
-    i18n: {
-      en: {
-        inputPlaceholder: 'Digite aqui...',
-      }
-    },
-    styleConfiguration: {
-      fontFamily: 'Inter, sans-serif',
-      backgroundColor: '#007bff',
-      primaryColor: '#007bff',
-    }
-  });
-
-  // Ajuste de posição para não sobrepor o botão de WhatsApp
-  // O chat do n8n geralmente cria um elemento chamado <n8n-chat>
-  setTimeout(() => {
-    const chatElement = document.querySelector('n8n-chat');
-    if (chatElement) {
-       chatElement.style.position = 'fixed';
-       chatElement.style.bottom = '100px'; // Sobe o chat para ficar acima do botão do WhatsApp
-       chatElement.style.right = '30px';
-       chatElement.style.zIndex = '9999';
-    }
-  }, 1000);
+       
+</script>
+  
 </script>
 
     </head>
