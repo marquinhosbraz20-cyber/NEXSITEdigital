@@ -1517,8 +1517,85 @@
 
     .promo-button:hover {
         transform: scale(1.05);
-    }
+    
+    
+    } .container-sao-joao {
+    position: absolute; /* Para flutuar sobre o fundo */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999; /* Para ficar na frente de tudo */
+    padding-top: 0; /* Remova o padding que empurrou elas para baixo */
+}
+
+.varal {
+    justify-content: space-between; /* Faz as bandeiras espalharem pelo varal todo */
+    width: 100%;
+}
+
 </style>
+<!-- BLOCO DE ESTILO (CSS) -->
+<style>
+    .container-sao-joao {
+      width: 100%;
+      overflow: hidden;
+      padding-top: 70px;
+      background: transparent;
+    }
+  
+    .corda {
+      width: 100%;
+      height: 3px;
+      background: #8b4513;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+  
+    .varal {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: -2px;
+    }
+  
+    .bandeira {
+      width: 40px;
+      height: 55px;
+      clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 50% 80%, 0% 100%);
+      /* Mudamos 'balanço' para 'balanco' para evitar erros de acentuação */
+      animation: balanco 2.5s ease-in-out infinite alternate;
+      transform-origin: top center;
+    }
+  
+    .bandeira:nth-child(4n+1) { background-color: #ff3d00; }
+    .bandeira:nth-child(4n+2) { background-color: #ffea00; }
+    .bandeira:nth-child(4n+3) { background-color: #00e676; }
+    .bandeira:nth-child(4n+4) { background-color: #2979ff; }
+  
+    @keyframes balanco {
+      from { transform: rotate(-6deg); }
+      to { transform: rotate(6deg); }
+    }
+  
+    .bandeira:nth-child(even) { animation-delay: 0.10s; }
+  </style> <!-- FECHAMENTO ESSENCIAL AQUI -->
+  
+  <!-- BLOCO DE CONTEÚDO (HTML) -->
+  <div class="container-sao-joao">
+    <div class="corda"></div>
+    <div class="varal">
+      <div class="bandeira"></div>
+      <div class="bandeira"></div>
+      <div class="bandeira"></div>
+      <div class="bandeira"></div>
+      <div class="bandeira"></div>
+      <div class="bandeira"></div>
+      <div class="bandeira"></div>
+      <div class="bandeira"></div>
+    </div>
+  </div>
+  
+
+
 
 <div class="promo-banner">
     <div class="promo-content">
