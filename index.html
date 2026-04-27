@@ -1515,85 +1515,106 @@
         box-shadow: 0 4px 15px rgba(0,0,0,0.3);
     }
 
-    .promo-button:hover {
+     /* 1. Primeiro fechamos a regra que estava aberta */
+     .promo-button:hover {
         transform: scale(1.05);
-    
-    
-    } .container-sao-joao {
-    position: absolute; /* Para flutuar sobre o fundo */
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 999; /* Para ficar na frente de tudo */
-    padding-top: 0; /* Remova o padding que empurrou elas para baixo */
-}
+    }
 
-.varal {
-    justify-content: space-between; /* Faz as bandeiras espalharem pelo varal todo */
-    width: 100%;
-}
-
-</style>
-<!-- BLOCO DE ESTILO (CSS) -->
-<style>
+    /* 2. Agora os estilos do São João (tudo dentro do mesmo bloco style) */
     .container-sao-joao {
-      width: 100%;
-      overflow: hidden;
-      padding-top: 70px;
-      background: transparent;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        overflow: hidden;
+        z-index: 9999;
+        pointer-events: none;
     }
-  
+
     .corda {
-      width: 100%;
-      height: 3px;
-      background: #8b4513;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        width: 100%;
+        height: 2px;
+        background: rgba(139, 69, 19, 0.4);
     }
-  
+
     .varal {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      margin-top: -2px;
+        display: flex;
+        justify-content: space-around; 
+        width: 100%;
+        margin-top: -1px;
     }
-  
+
     .bandeira {
-      width: 40px;
-      height: 55px;
-      clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 50% 80%, 0% 100%);
-      /* Mudamos 'balanço' para 'balanco' para evitar erros de acentuação */
-      animation: balanco 2.5s ease-in-out infinite alternate;
-      transform-origin: top center;
+        width: 30px;
+        height: 45px;
+        clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 50% 80%, 0% 100%);
+        animation: balanco-junino 3s ease-in-out infinite alternate;
+        transform-origin: top center;
     }
-  
-    .bandeira:nth-child(4n+1) { background-color: #ff3d00; }
-    .bandeira:nth-child(4n+2) { background-color: #ffea00; }
-    .bandeira:nth-child(4n+3) { background-color: #00e676; }
-    .bandeira:nth-child(4n+4) { background-color: #2979ff; }
-  
-    @keyframes balanco {
-      from { transform: rotate(-6deg); }
-      to { transform: rotate(6deg); }
+
+    .bandeira:nth-child(4n+1) { background-color: #00f2ff; }
+    .bandeira:nth-child(4n+2) { background-color: #7000ff; }
+    .bandeira:nth-child(4n+3) { background-color: #00ff88; }
+    .bandeira:nth-child(4n+4) { background-color: #ffffff; }
+
+    @keyframes balanco-junino {
+        from { transform: rotate(-8deg); }
+        to { transform: rotate(8deg); }
     }
-  
-    .bandeira:nth-child(even) { animation-delay: 0.10s; }
-  </style> <!-- FECHAMENTO ESSENCIAL AQUI -->
-  
-  <!-- BLOCO DE CONTEÚDO (HTML) -->
-  <div class="container-sao-joao">
+
+    .bandeira:nth-child(odd) { animation-duration: 2.2s; }
+    .bandeira:nth-child(even) { animation-duration: 3.5s; }
+
+    .fogueira-nex {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+        z-index: 9998;
+    }
+    .fogo {
+        position: absolute;
+        bottom: 15px;
+        left: 10px;
+        width: 30px;
+        height: 30px;
+        background: orange;
+        border-radius: 50% 0 50% 50%;
+        transform: rotate(-45deg);
+        animation: chama-sobe 0.6s infinite alternate;
+        box-shadow: 0 0 20px orange;
+    }
+    @keyframes chama-sobe {
+        from { transform: rotate(-45deg) scale(1); }
+        to { transform: rotate(-45deg) scale(1.2); opacity: 0.8; }
+    }
+    .base-madeira {
+        position: absolute;
+        bottom: 5px;
+        width: 45px;
+        height: 8px;
+        background: #5d4037;
+        border-radius: 5px;
+    }
+</style>
+
+<!-- 3. Agora o HTML (fora da tag style) -->
+<div class="container-sao-joao">
     <div class="corda"></div>
     <div class="varal">
-      <div class="bandeira"></div>
-      <div class="bandeira"></div>
-      <div class="bandeira"></div>
-      <div class="bandeira"></div>
-      <div class="bandeira"></div>
-      <div class="bandeira"></div>
-      <div class="bandeira"></div>
-      <div class="bandeira"></div>
+        <div class="bandeira"></div><div class="bandeira"></div><div class="bandeira"></div><div class="bandeira"></div><div class="bandeira"></div>
+        <div class="bandeira"></div><div class="bandeira"></div><div class="bandeira"></div><div class="bandeira"></div><div class="bandeira"></div>
+        <div class="bandeira"></div><div class="bandeira"></div><div class="bandeira"></div><div class="bandeira"></div><div class="bandeira"></div>
+        <div class="bandeira"></div><div class="bandeira"></div><div class="bandeira"></div><div class="bandeira"></div><div class="bandeira"></div>
     </div>
-  </div>
-  
+</div>
+
+<div class="fogueira-nex">
+    <div class="fogo"></div>
+    <div class="base-madeira"></div>
+</div>
+
 
 
 
