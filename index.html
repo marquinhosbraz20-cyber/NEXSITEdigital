@@ -1616,17 +1616,118 @@
 </div>
 
 
+        
+<style>
+    /* Container Principal */
+    .hero-section-wrapper {
+        display: flex;
+        flex-direction: column; /* Coloca um item embaixo do outro */
+        align-items: center;    /* Centraliza tudo horizontalmente */
+        gap: 20px;              /* Espaço entre a frase e o banner */
+        width: 100%;
+        margin-top: 50px;
+    }
 
+    /* 1. Frase "Transformando ideias..." */
+    .tagline {
+        background: rgba(0, 255, 255, 0.1); /* Fundo sutil */
+        border: 1px solid #00dfd8;
+        color: #00dfd8;
+        padding: 8px 20px;
+        border-radius: 50px;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
 
-<div class="promo-banner">
-    <div class="promo-content">
-        <p class="promo-text">
-            OFERTA EXCLUSIVA:
-            <strong>70% DE DESCONTO</strong>
-        </p>
+    /* 2. Container do Banner + Pato */
+    .banner-container {
+        position: relative; /* Para o pato se basear nele */
+        display: flex;
+        align-items: center;
+    }
+
+    /* O Banner Amarelo */
+    .promo-banner {
+        background-color: #ccff00;
+        padding: 20px 40px;
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+
+    .promo-text {
+        color: black;
+        margin: 0;
+        font-weight: bold;
+        font-size: 1.2rem;
+        text-align: center;
+    }
+
+    /* Botão Resgatar dentro do banner */
+    .resgatar-btn {
+        background: black;
+        color: white;
+        padding: 12px 25px;
+        border-radius: 10px;
+        text-decoration: none;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    /* 3. O Pato no Lado Esquerdo */
+    .pato-left {
+        position: absolute;
+        left: -310px; /* Joga para a esquerda do banner */
+        width: 520px; /* Tamanho ajustado */
+        height: auto;
+        z-index: 5;
+    }
+
+    /* Ajuste para Mobile */
+    @media (max-width: 768px) {
+        .pato-left {
+            position: relative;
+            left: 0;
+            margin-bottom: 10px;
+            width: 80px;
+        }
+        .banner-container {
+            flex-direction: column;
+        }
+        .promo-banner {
+            flex-direction: column;
+            text-align: center;
+        }
+    }
+</style>
+
+<div class="hero-section-wrapper">
+    
+    <div class="tagline"> Nexsite Digital PATOS-PB
+       
     </div>
-    <a href="https://wa.me/+558398015278" class="promo-button">RESGATAR AGORA</a>
+
+    <div class="banner-container">
+        
+        <img src="https://i.postimg.cc/nrK09Mwd/Picsart-26-04-30-17-52-45-706.png" 
+             class="pato-left" alt="Mascote">
+
+        <div class="promo-banner">
+            <p class="promo-text">
+                OFERTA EXCLUSIVA:<br>
+                <span style="font-size: 1.8rem;">70% DE DESCONTO</span>
+            </p>
+            <a href="https://wa.me/+558398015278" class="resgatar-btn">RESGATAR AGORA</a>
+        </div>
+
+    </div>
+
 </div>
+  
             <h1>
                 Criamos Experiências<br>
                 <span class="gradient-text">Digitais que Vendem</span>
