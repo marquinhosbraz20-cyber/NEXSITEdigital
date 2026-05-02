@@ -1688,22 +1688,62 @@
     }
 
     /* Ajuste para Mobile */
-    @media (max-width: 768px) {
-        .pato-left {
-            position: relative;
-            left: 0;
-            margin-bottom: 10px;
-            width: 80px;
-        }
-        .banner-container {
-            flex-direction: column;
-        }
-        .promo-banner {
-            flex-direction: column;
-            text-align: center;
-        }
+    <style>
+    /* Container que organiza tudo */
+    .banner-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 40px auto;
+        padding: 0 10px;
+        width: 100%;
+        max-width: 600px; /* Evita que fique gigante no PC */
     }
+
+    /* O Pato agora é um "irmão" da barra, não um adesivo */
+    .pato-img {
+        width: 120px; /* Tamanho fixo bom */
+        height: auto;
+        margin-right: -10px; /* Faz ele "entrar" um pouco na barra amarela */
+        z-index: 2;
+        flex-shrink: 0; /* Impede o navegador de diminuir o pato */
+    }
+
+    /* A Barra Amarela */
+    .promo-banner {
+        background-color: #ccff00;
+        display: flex;
+        align-items: center;
+        padding: 15px 25px 15px 40px; /* Mais espaço na esquerda pro pato */
+        border-radius: 20px;
+        flex-grow: 1; /* Faz a barra ocupar o resto do espaço */
+        box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+
+    .promo-text {
+        color: #000;
+        font-family: sans-serif;
+        font-weight: bold;
+        line-height: 1.2;
+        margin: 0;
+        flex: 1;
+    }
+
+    .resgatar-btn {
+        background: #000;
+        color: #fff;
+        padding: 10px 15px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-size: 12px;
+        font-weight: bold;
+        margin-left: 10px;
+        white-space: nowrap; /* Não deixa o texto do botão quebrar */
+    }
+
+
 </style>
+
 
 <div class="hero-section-wrapper">
     
@@ -2435,6 +2475,8 @@ ${dados.descricao}
                     OFERTA EXCLUSIVA:
                     <strong>70% DE DESCONTO</strong>
                 </p>
+            </div>
+            <a href="https://wa.me/+558398015278" class="promo-button">RESGATAR CUPOM</a>
         </div>
         
 </body>
