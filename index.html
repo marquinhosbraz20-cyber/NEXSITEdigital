@@ -1555,7 +1555,7 @@
     .bandeira:nth-child(4n+1) { background-color: #00f2ff; }
     .bandeira:nth-child(4n+2) { background-color: #7000ff; }
     .bandeira:nth-child(4n+3) { background-color: #00ff88; }
-    .bandeira:nth-child(4n+4) { background-color: #ffffff; }
+    .bandeira:nth-child(4n+4) { background-color: #fbff00; }
 
     @keyframes balanco-junino {
         from { transform: rotate(-8deg); }
@@ -1618,154 +1618,103 @@
 
         
 <style>
-    /* Container Principal */
-    .hero-section-wrapper {
-        display: flex;
-        flex-direction: column; /* Coloca um item embaixo do outro */
-        align-items: center;    /* Centraliza tudo horizontalmente */
-        gap: 20px;              /* Espaço entre a frase e o banner */
-        width: 100%;
-        margin-top: 50px;
-    }
-
-    /* 1. Frase "Transformando ideias..." */
-    .tagline {
-        background: rgba(0, 255, 255, 0.1); /* Fundo sutil */
-        border: 1px solid #00dfd8;
-        color: #00dfd8;
-        padding: 8px 20px;
-        border-radius: 50px;
-        font-size: 14px;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-    }
-
-    /* 2. Container do Banner + Pato */
-    .banner-container {
-        position: relative; /* Para o pato se basear nele */
-        display: flex;
-        align-items: center;
-    }
-
-    /* O Banner Amarelo */
-    .promo-banner {
-        background-color: #ccff00;
-        padding: 20px 40px;
-        border-radius: 20px;
-        display: flex;
-        align-items: center;
-        gap: 20px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-    }
-
-    .promo-text {
-        color: black;
-        margin: 0;
-        font-weight: bold;
-        font-size: 1.2rem;
-        text-align: center;
-    }
-
-    /* Botão Resgatar dentro do banner */
-    .resgatar-btn {
-        background: black;
-        color: white;
-        padding: 12px 25px;
-        border-radius: 10px;
-        text-decoration: none;
-        font-weight: bold;
-        text-transform: uppercase;
-    }
-
-    /* 3. O Pato no Lado Esquerdo */
-    .pato-left {
-        position: absolute;
-        left: -310px; /* Joga para a esquerda do banner */
-        width: 520px; /* Tamanho ajustado */
-        height: auto;
-        z-index: 5;
-    }
-
-    /* Ajuste para Mobile */
     <style>
-    /* Container que organiza tudo */
-    .banner-wrapper {
+    /* Container que centraliza o conjunto na tela */
+    .hero-promo-wrapper {
         display: flex;
-        align-items: center;
         justify-content: center;
-        margin: 40px auto;
-        padding: 0 10px;
+        align-items: center;
         width: 100%;
-        max-width: 600px; /* Evita que fique gigante no PC */
+        padding: 20px 0;
+        overflow: visible; /* Garante que o pato não seja cortado */
     }
 
-    /* O Pato agora é um "irmão" da barra, não um adesivo */
-    .pato-img {
-        width: 120px; /* Tamanho fixo bom */
+    /* O conjunto Pato + Banner */
+    .promo-flex-container {
+        display: flex;
+        align-items: center;
+        position: relative;
+        /* O segredo: a largura total do conjunto não pode ser 100% da tela */
+        width: 95%; 
+        max-width: 500px;
+        margin: 0 auto;
+    }
+
+    /* O Pato */
+    .pato-mascote {
+        width: 170px; /* Tamanho fixo */
         height: auto;
-        margin-right: -10px; /* Faz ele "entrar" um pouco na barra amarela */
-        z-index: 2;
-        flex-shrink: 0; /* Impede o navegador de diminuir o pato */
+        flex-shrink: 0; /* Proíbe o navegador de encolher a imagem */
+        z-index: 5;
+        margin-right: -45px; /* Faz ele entrar na frente da barra */
     }
 
     /* A Barra Amarela */
-    .promo-banner {
+    .barra-amarela {
         background-color: #ccff00;
+        border-radius: 15px;
         display: flex;
         align-items: center;
-        padding: 15px 25px 15px 40px; /* Mais espaço na esquerda pro pato */
-        border-radius: 20px;
-        flex-grow: 1; /* Faz a barra ocupar o resto do espaço */
-        box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        justify-content: space-between;
+        padding: 12px 15px 12px 50px; /* 50px na esquerda pro texto não bater no pato */
+        flex-grow: 1;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.3);
     }
 
-    .promo-text {
+    .texto-oferta {
         color: #000;
-        font-family: sans-serif;
-        font-weight: bold;
-        line-height: 1.2;
+        font-family: 'Arial Black', sans-serif;
+        font-size: 12px;
+        line-height: 1.1;
         margin: 0;
+        text-transform: uppercase;
         flex: 1;
     }
 
-    .resgatar-btn {
+    .botao-resgatar {
         background: #000;
         color: #fff;
-        padding: 10px 15px;
+        padding: 10px 14px;
         border-radius: 8px;
         text-decoration: none;
-        font-size: 12px;
+        font-size: 11px;
         font-weight: bold;
-        margin-left: 10px;
-        white-space: nowrap; /* Não deixa o texto do botão quebrar */
+        white-space: nowrap;
+        margin-left: 8px;
     }
 
-
+    /* AJUSTE PARA TELAS PEQUENAS (Até 380px) */
+    @media (max-width: 380px) {
+        .pato-mascote {
+            width: 300px;
+            margin-right: -40px;
+        }
+        .barra-amarela {
+            padding-left: 35px;
+        }
+        .texto-oferta {
+            font-size: 10px;
+        }
+        .botao-resgatar {
+            padding: 8px 10px;
+            font-size: 10px;
+        }
+    }
 </style>
 
-
-<div class="hero-section-wrapper">
-    
-    <div class="tagline"> Nexsite Digital PATOS-PB
-       
-    </div>
-
-    <div class="banner-container">
-        
+<div class="hero-promo-wrapper">
+    <div class="promo-flex-container">
         <img src="https://i.postimg.cc/nrK09Mwd/Picsart-26-04-30-17-52-45-706.png" 
-             class="pato-left" alt="Mascote">
+             class="pato-mascote" alt="Mascote">
 
-        <div class="promo-banner">
-            <p class="promo-text">
+        <div class="barra-amarela">
+            <p class="texto-oferta">
                 OFERTA EXCLUSIVA:<br>
-                <span style="font-size: 1.8rem;">70% DE DESCONTO</span>
+                <span style="font-size: 1.4em;">70% DE DESCONTO</span>
             </p>
-            <a href="https://wa.me/+558398015278" class="resgatar-btn">RESGATAR AGORA</a>
+            <a href="https://wa.me/+558398015278" class="botao-resgatar">RESGATAR AGORA</a>
         </div>
-
     </div>
-
 </div>
   
             <h1>
@@ -2475,9 +2424,6 @@ ${dados.descricao}
                     OFERTA EXCLUSIVA:
                     <strong>70% DE DESCONTO</strong>
                 </p>
-            </div>
-            <a href="https://wa.me/+558398015278" class="promo-button">RESGATAR CUPOM</a>
         </div>
-        
 </body>
 </html>
