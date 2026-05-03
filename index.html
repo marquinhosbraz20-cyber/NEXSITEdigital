@@ -1625,7 +1625,7 @@
         justify-content: center;
         align-items: center;
         width: 100%;
-        padding: 20px 0;
+        padding: 10px 0;
         overflow: visible; /* Garante que o pato não seja cortado */
     }
 
@@ -1636,23 +1636,23 @@
         position: relative;
         /* O segredo: a largura total do conjunto não pode ser 100% da tela */
         width: 95%; 
-        max-width: 500px;
+        max-width: 1100px;
         margin: 0 auto;
     }
 
     /* O Pato */
     .pato-mascote {
-        width: 170px; /* Tamanho fixo */
+        width: 500px; /* Tamanho fixo */
         height: auto;
         flex-shrink: 0; /* Proíbe o navegador de encolher a imagem */
         z-index: 5;
-        margin-right: -45px; /* Faz ele entrar na frente da barra */
+        margin-right: -180px; /* Faz ele entrar na frente da barra */
     }
 
     /* A Barra Amarela */
     .barra-amarela {
-        background-color: #ccff00;
-        border-radius: 15px;
+        background-color: #fffb00;
+        border-radius: 30px;
         display: flex;
         align-items: center;
         justify-content: space-between;
