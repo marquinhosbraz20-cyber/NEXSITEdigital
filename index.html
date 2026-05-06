@@ -1614,11 +1614,9 @@
     <div class="fogo"></div>
     <div class="base-madeira"></div>
 </div>
-
-
-        
+ 
 <style>
-    <style>
+   <style>
     /* Container que centraliza o conjunto na tela */
     .hero-promo-wrapper {
         display: flex;
@@ -1626,7 +1624,7 @@
         align-items: center;
         width: 100%;
         padding: 10px 0;
-        overflow: visible; /* Garante que o pato não seja cortado */
+        overflow: visible;
     }
 
     /* O conjunto Pato + Banner */
@@ -1634,7 +1632,6 @@
         display: flex;
         align-items: center;
         position: relative;
-        /* O segredo: a largura total do conjunto não pode ser 100% da tela */
         width: 95%; 
         max-width: 1100px;
         margin: 0 auto;
@@ -1642,24 +1639,31 @@
 
     /* O Pato */
     .pato-mascote {
-        width: 500px; /* Tamanho fixo */
+        width: 500px;
         height: auto;
-        flex-shrink: 0; /* Proíbe o navegador de encolher a imagem */
+        flex-shrink: 0;
         z-index: 5;
         margin-right: -180px; /* Faz ele entrar na frente da barra */
     }
 
-    /* A Barra Amarela */
+    /* A Barra Amarela - AJUSTADA PARA PC */
     .barra-amarela {
-        background-color: #fffb00;
-        border-radius: 30px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 12px 15px 12px 50px; /* 50px na esquerda pro texto não bater no pato */
-        flex-grow: 1;
-        box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-    }
+    background-color: #fffb00;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+    /* Aumentei o recuo para 200px para empurrar o texto bem para a direita */
+    padding: 12px 25px 12px 200px; 
+    
+    flex: none;
+    
+    /* Aumentei a largura para 580px para compensar o espaço que o padding "roubou" */
+    width: 580px; 
+    
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
 
     .texto-oferta {
         color: #000;
@@ -1668,7 +1672,7 @@
         line-height: 1.1;
         margin: 0;
         text-transform: uppercase;
-        flex: 1;
+        flex: none; /* Impede o texto de empurrar as bordas */
     }
 
     .botao-resgatar {
@@ -1683,28 +1687,52 @@
         margin-left: 8px;
     }
 
-    /* AJUSTE PARA TELAS PEQUENAS (Até 380px) */
-    @media (max-width: 380px) {
+    /* AJUSTE PARA TELAS PEQUENAS (Até 480px) */
+    @media (max-width: 480px) {
         .pato-mascote {
-            width: 300px;
-            margin-right: -40px;
+            width: 160px;
+            margin-right: -45px; 
+            z-index: 2;
         }
+
         .barra-amarela {
-            padding-left: 35px;
+            /* Largura reduzida no celular */
+            width: 200px !important;
+            /* Padding ajustado para o pato menor */
+            padding: 8px 10px 8px 45px !important; 
+            height: auto;
+            min-height: 55px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-radius: 20px;
         }
+
         .texto-oferta {
-            font-size: 10px;
+            font-size: 9px;
+            line-height: 1.1;
+            margin-bottom: 5px;
+            text-align: center;
         }
+
+        .texto-oferta span {
+            font-size: 1.2em !important;
+        }
+
         .botao-resgatar {
-            padding: 8px 10px;
-            font-size: 10px;
+            padding: 5px 8px;
+            font-size: 9px;
+            width: 100%;
+            text-align: center;
+            margin-left: 0; /* Centraliza no modo coluna */
         }
     }
 </style>
 
 <div class="hero-promo-wrapper">
     <div class="promo-flex-container">
-        <img src="https://i.postimg.cc/nrK09Mwd/Picsart-26-04-30-17-52-45-706.png" 
+        <img src="https://i.postimg.cc/qqkSryfV/Picsart-26-05-06-07-49-49-247.png" 
              class="pato-mascote" alt="Mascote">
 
         <div class="barra-amarela">
