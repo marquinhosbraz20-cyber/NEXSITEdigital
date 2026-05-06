@@ -1689,45 +1689,39 @@
 
     /* AJUSTE PARA TELAS PEQUENAS (Até 480px) */
     @media (max-width: 480px) {
-        .pato-mascote {
-            width: 160px;
-            margin-right: -45px; 
-            z-index: 2;
-        }
-
-        .barra-amarela {
-            /* Largura reduzida no celular */
-            width: 200px !important;
-            /* Padding ajustado para o pato menor */
-            padding: 8px 10px 8px 45px !important; 
-            height: auto;
-            min-height: 55px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            border-radius: 20px;
-        }
-
-        .texto-oferta {
-            font-size: 9px;
-            line-height: 1.1;
-            margin-bottom: 5px;
-            text-align: center;
-        }
-
-        .texto-oferta span {
-            font-size: 1.2em !important;
-        }
-
-        .botao-resgatar {
-            padding: 5px 8px;
-            font-size: 9px;
-            width: 100%;
-            text-align: center;
-            margin-left: 0; /* Centraliza no modo coluna */
-        }
+    .pato-mascote {
+        width: 140px !important; /* Pato bem pequeno no celular */
+        margin-right: -40px !important; /* Traz a barra para "baixo" da asa */
+        z-index: 10;
     }
+
+    .barra-amarela {
+        width: 240px !important; /* Largura fixa para caber na tela */
+        /* MUITO IMPORTANTE: Reduzir o recuo da esquerda para 40px */
+        padding: 8px 10px 8px 45px !important; 
+        
+        flex-direction: column !important; /* Coloca texto em cima e botão embaixo */
+        align-items: center !important;
+        justify-content: center !important;
+        min-height: 60px !important;
+        border-radius: 15px !important;
+    }
+
+    .texto-oferta {
+        font-size: 10px !important;
+        text-align: center !important;
+        margin-bottom: 5px !important;
+        width: 100% !important;
+    }
+
+    .botao-resgatar {
+        font-size: 9px !important;
+        padding: 6px 10px !important;
+        width: 90% !important;
+        margin-left: 0 !important;
+        text-align: center;
+    }
+}
 </style>
 
 <div class="hero-promo-wrapper">
