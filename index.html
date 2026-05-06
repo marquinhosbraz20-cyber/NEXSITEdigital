@@ -1687,22 +1687,21 @@
         margin-left: 8px;
     }
 
-    /* AJUSTE PARA TELAS PEQUENAS (Até 480px) */
-    @media (max-width: 480px) {
+ /* FECHAMENTO DE SEGURANÇA - Garante que o código do PC terminou */
+
+/* AJUSTE PARA TELAS PEQUENAS (Até 480px) */
+@media (max-width: 480px) {
     body .pato-mascote {
-        width: 140px !important;
-        margin-right: -45px !important;
+        width: 130px !important; /* Diminuí um pouco mais para garantir espaço */
+        margin-right: -40px !important;
         z-index: 10 !important;
     }
 
     body .barra-amarela {
-        /* Isso vai encolher a barra de vez */
         width: 220px !important; 
         max-width: 220px !important;
-        
-        /* Reduzindo o recuo da esquerda que "comia" o texto */
-        padding: 8px 10px 8px 45px !important; 
-        
+        /* Reduzi o padding de 200px (PC) para 45px (Mobile) */
+        padding: 10px 10px 10px 45px !important; 
         flex-direction: column !important; 
         display: flex !important;
         height: auto !important;
@@ -1720,13 +1719,12 @@
 
     body .botao-resgatar {
         font-size: 9px !important;
-        padding: 5px 10px !important;
+        padding: 8px 10px !important;
         width: 90% !important;
         margin: 0 auto !important;
         display: block !important;
     }
 }
-</style>
 
 <div class="hero-promo-wrapper">
     <div class="promo-flex-container">
