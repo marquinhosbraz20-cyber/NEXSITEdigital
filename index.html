@@ -1687,44 +1687,42 @@
         margin-left: 8px;
     }
 
- /* FECHAMENTO DE SEGURANÇA - Garante que o código do PC terminou */
-
-/* AJUSTE PARA TELAS PEQUENAS (Até 480px) */
-@media (max-width: 480px) {
-    body .pato-mascote {
-        width: 130px !important; /* Diminuí um pouco mais para garantir espaço */
-        margin-right: -40px !important;
-        z-index: 10 !important;
+    /* AJUSTE PARA TELAS PEQUENAS (Até 480px) */
+    @media (max-width: 480px) {
+    .pato-mascote {
+        width: 140px !important; /* Pato bem pequeno no celular */
+        margin-right: -40px !important; /* Traz a barra para "baixo" da asa */
+        z-index: 10;
     }
 
-    body .barra-amarela {
-        width: 220px !important; 
-        max-width: 220px !important;
-        /* Reduzi o padding de 200px (PC) para 45px (Mobile) */
-        padding: 10px 10px 10px 45px !important; 
-        flex-direction: column !important; 
-        display: flex !important;
-        height: auto !important;
+    .barra-amarela {
+        width: 240px !important; /* Largura fixa para caber na tela */
+        /* MUITO IMPORTANTE: Reduzir o recuo da esquerda para 40px */
+        padding: 8px 10px 8px 45px !important; 
+        
+        flex-direction: column !important; /* Coloca texto em cima e botão embaixo */
+        align-items: center !important;
+        justify-content: center !important;
+        min-height: 60px !important;
         border-radius: 15px !important;
     }
 
-    body .texto-oferta {
+    .texto-oferta {
         font-size: 10px !important;
         text-align: center !important;
         margin-bottom: 5px !important;
-        flex: none !important;
         width: 100% !important;
-        padding: 0 !important;
     }
 
-    body .botao-resgatar {
+    .botao-resgatar {
         font-size: 9px !important;
-        padding: 8px 10px !important;
+        padding: 6px 10px !important;
         width: 90% !important;
-        margin: 0 auto !important;
-        display: block !important;
+        margin-left: 0 !important;
+        text-align: center;
     }
 }
+</style>
 
 <div class="hero-promo-wrapper">
     <div class="promo-flex-container">
