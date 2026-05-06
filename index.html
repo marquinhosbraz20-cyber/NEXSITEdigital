@@ -1689,37 +1689,41 @@
 
     /* AJUSTE PARA TELAS PEQUENAS (Até 480px) */
     @media (max-width: 480px) {
-    .pato-mascote {
-        width: 140px !important; /* Pato bem pequeno no celular */
-        margin-right: -40px !important; /* Traz a barra para "baixo" da asa */
-        z-index: 10;
+    body .pato-mascote {
+        width: 140px !important;
+        margin-right: -45px !important;
+        z-index: 10 !important;
     }
 
-    .barra-amarela {
-        width: 240px !important; /* Largura fixa para caber na tela */
-        /* MUITO IMPORTANTE: Reduzir o recuo da esquerda para 40px */
+    body .barra-amarela {
+        /* Isso vai encolher a barra de vez */
+        width: 220px !important; 
+        max-width: 220px !important;
+        
+        /* Reduzindo o recuo da esquerda que "comia" o texto */
         padding: 8px 10px 8px 45px !important; 
         
-        flex-direction: column !important; /* Coloca texto em cima e botão embaixo */
-        align-items: center !important;
-        justify-content: center !important;
-        min-height: 60px !important;
+        flex-direction: column !important; 
+        display: flex !important;
+        height: auto !important;
         border-radius: 15px !important;
     }
 
-    .texto-oferta {
+    body .texto-oferta {
         font-size: 10px !important;
         text-align: center !important;
         margin-bottom: 5px !important;
+        flex: none !important;
         width: 100% !important;
+        padding: 0 !important;
     }
 
-    .botao-resgatar {
+    body .botao-resgatar {
         font-size: 9px !important;
-        padding: 6px 10px !important;
+        padding: 5px 10px !important;
         width: 90% !important;
-        margin-left: 0 !important;
-        text-align: center;
+        margin: 0 auto !important;
+        display: block !important;
     }
 }
 </style>
