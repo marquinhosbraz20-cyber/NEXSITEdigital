@@ -2656,5 +2656,25 @@ ${dados.descricao}
             <p>&copy; 2026 NexSite Digital. Todos os direitos reservados.</p>
         </div>
     </footer>
+    <script>
+  // Esta função cria o cookie assim que a página carrega
+  function criarCookieAutomatico() {
+    const nome = "visitante_nexsite";
+    const valor = "ativo";
+    const dias = 7; // O cookie vai durar 7 dias
+    
+    const d = new Date();
+    d.setTime(d.getTime() + (dias*24*60*60*1000));
+    let expires = "expires="+ d.toUTCString();
+    
+    // Define o cookie
+    document.cookie = nome + "=" + valor + ";" + expires + ";path=/;SameSite=Lax";
+    
+    console.log("Cookie da NexSite criado com sucesso!");
+  }
+
+  // Executa a função
+  criarCookieAutomatico();
+</script>
 </body>
 </html>
